@@ -13,7 +13,7 @@ module.exports = (sequelize, DataTypes) => {
       // define association here
       Spot.belongsTo(
         models.User,
-        {foreignKey: "ownerId"}
+        {foreignKey: "ownerId", as: "Owner"}
       )
       Spot.hasMany(
         models.SpotImage,
@@ -99,7 +99,8 @@ module.exports = (sequelize, DataTypes) => {
   }, {
     sequelize,
     modelName: 'Spot',
-    indexes: [{unique: true, fields: ["address", "city"]}]
+    indexes: [{unique: true, fields: ["address", "city"]}],
+
   });
   return Spot;
 };

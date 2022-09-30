@@ -54,11 +54,58 @@ const validateCreateSpot = [
   handleValidationErrors
 ];
 
+const checkReviewStar = [
+  check("review")
+    .exists({ checkFalsy: true })
+    .withMessage("Review text is required"),
+  check("stars")
+    .exists({ checkFalsy: true })
+    .custom(val => val <= 5 && val >= 1)
+    .withMessage("Stars must be an integer from 1 to 5"),
+  handleValidationErrors
+]
 
+const checkEndBeforeStart = [
+  check("endDate")
+    .exists({ checkFalsy: true })
+    .custom((val, { req }) => new Date(val) > new Date(req.body.startDate))
+    .withMessage("endDate cannot be on or before startDate"),
+  handleValidationErrors
+]
 
+const checkQuery = [
+  check("page")
+    .custom((val) => !val || parseInt(val) > 0 ? true : false )
+    .withMessage("Page must be greater than or equal to 1"),
+  check("size")
+    .custom((val) => !val || parseInt(val) > 0 ? true : false )
+    .withMessage("Size must be greater than or equal to 1"),
+  check("maxLat")
+    .custom((val) => !val || parseInt(val) || parseInt(val) == 0 ? true : false )
+    .withMessage("Maximum latitude is invalid"),
+  check("minLat")
+    .custom((val) => !val || parseInt(val) || parseInt(val) == 0 ? true : false )
+    .withMessage("Maximum latitude is invalid"),
+  check("minLng")
+    .custom((val) => !val || parseInt(val) || parseInt(val) == 0 ? true : false )
+    .withMessage("Minimum longitude is invalid"),
+  check("maxLng")
+    .custom((val) => !val || parseInt(val) || parseInt(val) == 0 ? true : false )
+    .withMessage("Maximum longitude is invalid"),
+  check("minPrice")
+    .custom((val) => !val || parseInt(val) >= 0 ? true : false )
+    .withMessage("Minimum price must be greater than or equal to 0"),
+  check("maxPrice")
+    .custom((val) => !val || parseInt(val) >= 0 ? true : false )
+    .withMessage("Maximum price must be greater than or equal to 0"),
+  handleValidationErrors,
+];
 
 
 module.exports = {
   handleValidationErrors,
-  validateCreateSpot
+  validateCreateSpot,
+  checkReviewStar,
+  checkEndBeforeStart,
+  checkQuery
 };

@@ -5,6 +5,42 @@ const bcrypt = require("bcryptjs");
 module.exports = (sequelize, DataTypes) => {
   class User extends Model {
     static associate(models) {
+      User.hasMany(
+        models.Spot,
+        {foreignKey: "ownerId"}
+      )
+      User.belongsToMany(
+        models.Spot,
+        {
+          through: models.Booking,
+          foreignKey: "userId",
+          otherKey: "spotId"
+        }
+      )
+      User.hasMany(
+        models.Booking,
+        {
+          foreignKey: "userId",
+          onDelete: "CASCADE",
+          hooks: true
+        },
+      )
+      User.belongsToMany(
+        models.Spot,
+        {
+          through: models.Review,
+          foreignKey: "userId",
+          otherKey: "spotId"
+        }
+      )
+      User.hasMany(
+        models.Review,
+        {
+          foreignKey: "userId",
+          onDelete: "CASCADE",
+          hooks: true
+        },
+      )
     }
     static getCurrentUserById(id) {
       return User.scope("currentUser").findByPk(id);
@@ -23,9 +59,11 @@ module.exports = (sequelize, DataTypes) => {
         return await User.scope("currentUser").findByPk(user.id);
       }
     }
-    static async signup({ username, email, password }) {
+    static async signup({ firstName, lastName, username, email, password }) {
       const hashedPassword = bcrypt.hashSync(password);
       const user = await User.create({
+        firstName,
+        lastName,
         username,
         email,
         hashedPassword
@@ -33,8 +71,8 @@ module.exports = (sequelize, DataTypes) => {
       return await User.scope("currentUser").findByPk(user.id);
     }
     toSafeObject() {
-      const { id, username, email } = this;
-      return { id, username, email };
+      const { id, firstName, lastName, username, email } = this;
+      return { id, firstName, lastName, username, email };
     }
     validatePassword(password) {
       return bcrypt.compareSync(password, this.hashedPassword.toString());
@@ -98,7 +136,7 @@ module.exports = (sequelize, DataTypes) => {
       },
       scopes: {
         currentUser: {
-          attributes: { exclude: ["hashedPassword"] }
+          attributes: { exclude: ["hashedPassword", "createdAt", "updatedAt"] }
         },
         loginUser: {
           attributes: {}

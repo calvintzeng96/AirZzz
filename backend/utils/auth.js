@@ -56,38 +56,38 @@ const restoreUser = (req, res, next) => {
 
 
 // If there is no current user, return an error
-const requireAuth = function (req, _res, next) {
-    if (req.user) return next();
+// const requireAuth = function (req, _res, next) {
+//     if (req.user) return next();
 
-    const err = new Error("Unauthorized");
-    err.title = "Unauthorized";
-    err.errors = ["Unauthorized"];
-    err.status = 401;
-    return next(err);
+//     const err = new Error("Unauthorized");
+//     err.title = "Unauthorized";
+//     err.errors = ["Unauthorized"];
+//     err.status = 401;
+//     return next(err);
+// }
+
+//User Check
+const checkUser = (req, res, next) => {
+    if (req.user) {
+        return next()
+    }
+    res.status(401)
+    res.json({
+        statusCode: 401,
+        message: "Not Authorized"
+    })
 }
 
-// //User Check
-// const checkUser = (req, res, next) => {
-//     if (req.user) {
-//         return next()
-//     }
-//     res.status(401)
-//     res.json({
-//         statusCode: 401,
-//         message: "Not Authorized"
-//     })
-// }
+//checks to see if currentUser.id matches the instances' userId
+const notAuthorized = function(userId, instanceId, res) {
+    if (userId !== instanceId) {
+        res.status(403)
+        return res.json({
+            status: 403,
+            message: "User Not Authorized"
+        })
+    }
+    return
+}
 
-// //checks to see if currentUser.id matches the instances' userId
-// const notAuthorized = function(userId, instanceId, res) {
-//     if (userId !== instanceId) {
-//         res.status(401)
-//         return res.json({
-//             status: 401,
-//             message: "User Not Authorized"
-//         })
-//     }
-//     return
-// }
-
-module.exports = { setTokenCookie, restoreUser, requireAuth };
+module.exports = { setTokenCookie, restoreUser, checkUser, notAuthorized };

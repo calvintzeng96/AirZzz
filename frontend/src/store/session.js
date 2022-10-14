@@ -56,13 +56,13 @@ export const login = (user) => async (dispatch) => {
     return res;
 };
 
-// //Restore User
-// export const restoreUser = () => async dispatch => {
-//     const response = await csrfFetch('/api/session');
-//     const data = await response.json();
-//     dispatch(setUser(data.user));
-//     return response;
-// };
+//Restore User
+export const restoreUser = () => async dispatch => {
+    const response = await csrfFetch('/api/session');
+    const data = await response.json();
+    dispatch(setUser(data));
+    return response;
+};
 
 
 //Reducer

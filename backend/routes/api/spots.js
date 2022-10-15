@@ -94,8 +94,6 @@ router.get("/:spotId/bookings", checkUser, async (req, res) => {
 
     if (!spot) notFoundErr("Spot", res)
 
-    console.log(currentUser.id)
-    console.log(spot.ownerId)
     if (currentUser.id == spot.ownerId) {
         bookings = await Booking.findAll({
             where: {
@@ -107,7 +105,6 @@ router.get("/:spotId/bookings", checkUser, async (req, res) => {
             }
         })
     } else {
-        console.log("-------")
         bookings = await Booking.findAll({
             where: {
                 spotId: spot.id

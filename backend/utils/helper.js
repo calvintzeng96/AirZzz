@@ -41,7 +41,6 @@ const checkCount10 = async function (review, res) {
 
 //Adds Preview to Spot Object
 const addPreview = async function (spots) {
-    console.log(spots)
     for (let i = 0; i < spots.length; i++) {
         let spot = spots[i]
         let obj = spot.dataValues
@@ -69,7 +68,7 @@ const addPreviewNested = async function (spots) {
             },
             attributes: ["url"]
         })
-        console.log("---", obj)
+
         !url ? obj.previewImage = null : obj.previewImage = url.url
         delete (obj.description)
     }

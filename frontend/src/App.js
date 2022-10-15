@@ -15,20 +15,20 @@ function App() {
 
   return (
     <>
-      <Navigation isLoaded={isLoaded} />
-      <h1>TEST LOCATION</h1>
-      <div id="test">TEST LOCATION #2</div>
-      {isLoaded && (
-        <Switch>
-          {/* <Route path="/login">
+        <Navigation isLoaded={isLoaded} />
+        <h1 id="test1">TEST LOCATION #1</h1>
+        <div id="test2">TEST LOCATION #2</div>
+        {isLoaded && (
+          <Switch>
+            {/* <Route path="/login">
             <LoginFormPage />
           </Route> */}
-          {/* <Route path="/signup">
+            {/* <Route path="/signup">
             <SignupFormPage />
           </Route> */}
-        </Switch>
-      )}
-      <div id="footer">Footer Holder</div>
+          </Switch>
+        )}
+        <div id="footer">Footer Holder</div>
     </>
   );
 }

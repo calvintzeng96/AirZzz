@@ -18,7 +18,17 @@
 
 }
 
-#test {
-    height: 15000x;
+#test1 {
+    margin-top: 80px
+}
+
+#test2 {
+    height: 15000px;
     border: 1px solid red;
+}
+
+.modal-content {
+    position: absolute;
+    background-color: white;
+    z-index: 10
 }

@@ -1,11 +1,14 @@
 #nav-bar {
     border: 1px solid green;
-    position: sticky;
+    position: fixed;
+    height: 80px;
     top: 0px;
-    width: (100% - 200px);
+    width: 100%;
     display: flex;
-    padding: 0 100px;
+    margin: 0px;
+    left: 0px;
     justify-content: space-between;
+    align-items: center;
     z-index: 1;
     background-color: yellow;
 }
@@ -14,6 +17,9 @@
     display: flex;
     background-color: white;
     align-items: center;
-    margin: 20px;
-    margin-right: 150px
+    margin-right: 100px
+}
+
+#home {
+    margin-left: 100px
 }

@@ -1,8 +1,8 @@
 import React, { useState, useEffect } from "react";
 import { useDispatch } from "react-redux";
 import { Route, Switch } from "react-router-dom";
-import LoginFormPage from "./components/LoginFormPage";
-import SignupFormPage from "./components/SignupFormPage";
+// import LoginFormPage from "./components/LoginFormPage";
+// import SignupFormPage from "./components/SignupFormPage";
 import * as sessionActions from "./store/session";
 import Navigation from "./components/Navigation";
 
@@ -15,17 +15,20 @@ function App() {
 
   return (
     <>
-      <Navigation isLoaded={isLoaded} />
-      {isLoaded && (
-        <Switch>
-          <Route path="/login">
+        <Navigation isLoaded={isLoaded} />
+        <h1 id="test1">TEST LOCATION #1</h1>
+        <div id="test2">TEST LOCATION #2</div>
+        {isLoaded && (
+          <Switch>
+            {/* <Route path="/login">
             <LoginFormPage />
-          </Route>
-          <Route path="/signup">
+          </Route> */}
+            {/* <Route path="/signup">
             <SignupFormPage />
-          </Route>
-        </Switch>
-      )}
+          </Route> */}
+          </Switch>
+        )}
+        <div id="footer">Footer Holder</div>
     </>
   );
 }

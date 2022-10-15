@@ -1,29 +1,25 @@
-import React, { useState } from "react";
-import { useDispatch, useSelector } from "react-redux";
-import { Redirect } from "react-router-dom";
+import React, { useState, useContext } from "react";
 import * as sessionActions from "../../store/session";
-import "./SignupForm.css";
+import { useDispatch } from "react-redux";
+import { ModalContext } from "../../context/Modal";
 
-function SignupFormPage() {
+function SignupForm() {
     const dispatch = useDispatch();
-    const sessionUser = useSelector((state) => state.session.user);
-    //extra
     const [firstName, setFirstName] = useState("")
     const [lastName, setLastName] = useState("")
-    //extra
     const [email, setEmail] = useState("");
     const [username, setUsername] = useState("");
     const [password, setPassword] = useState("");
     const [confirmPassword, setConfirmPassword] = useState("");
     const [errors, setErrors] = useState([]);
-
-    if (sessionUser) return <Redirect to="/" />;
+    const { setModalType } = useContext(ModalContext)
 
     const handleSubmit = (e) => {
         e.preventDefault();
         if (password === confirmPassword) {
             setErrors([]);
             return dispatch(sessionActions.signup({ firstName, lastName, email, username, password }))
+                .then(() => setModalType(null))
                 .catch(async (res) => {
                     const data = await res.json();
                     if (data && data.errors) setErrors(data.errors);
@@ -33,11 +29,12 @@ function SignupFormPage() {
     };
 
     return (
-        <form onSubmit={handleSubmit}>
+        <form className="modal-content" onSubmit={handleSubmit}>
             <ul>
-                {errors.map((error, idx) => <li key={idx}>{error}</li>)}
+                {errors.map((error, idx) => (
+                    <li key={idx}>{error}</li>
+                ))}
             </ul>
-
             <label>
                 First Name
                 <input
@@ -97,4 +94,4 @@ function SignupFormPage() {
     );
 }
 
-export default SignupFormPage;
+export default SignupForm;

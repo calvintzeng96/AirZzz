@@ -1,0 +1,25 @@
+#nav-bar {
+    border: 1px solid green;
+    position: fixed;
+    height: 80px;
+    top: 0px;
+    width: 100%;
+    display: flex;
+    margin: 0px;
+    left: 0px;
+    justify-content: space-between;
+    align-items: center;
+    z-index: 1;
+    background-color: yellow;
+}
+
+#login-signup {
+    display: flex;
+    background-color: white;
+    align-items: center;
+    margin-right: 100px
+}
+
+#home {
+    margin-left: 100px
+}

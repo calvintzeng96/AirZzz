@@ -1,0 +1,19 @@
+#nav-bar {
+    border: 1px solid green;
+    position: sticky;
+    top: 0px;
+    width: (100% - 200px);
+    display: flex;
+    padding: 0 100px;
+    justify-content: space-between;
+    z-index: 1;
+    background-color: yellow;
+}
+
+#login-signup {
+    display: flex;
+    background-color: white;
+    align-items: center;
+    margin: 20px;
+    margin-right: 150px
+}

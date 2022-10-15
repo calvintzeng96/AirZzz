@@ -16,6 +16,8 @@ function App() {
   return (
     <>
       <Navigation isLoaded={isLoaded} />
+      <h1>TEST LOCATION</h1>
+      <div id="test">TEST LOCATION #2</div>
       {isLoaded && (
         <Switch>
           {/* <Route path="/login">
@@ -26,6 +28,7 @@ function App() {
           </Route> */}
         </Switch>
       )}
+      <div id="footer">Footer Holder</div>
     </>
   );
 }

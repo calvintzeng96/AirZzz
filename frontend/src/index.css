@@ -32,3 +32,32 @@
     background-color: white;
     z-index: 10
 }
+
+.card-box {
+    border: 1px solid black;
+    width: 240px;
+    height: 360px;
+    border-radius: 12px;
+    margin: 12px;
+    cursor: pointer
+}
+
+.preview-image {
+    border: 1px solid blue;
+    width:240px;
+    height:240px;
+    border-radius:12px;
+}
+
+#all-spots-container {
+    border: 1px solid purple;
+    margin: 79px;
+    display: flex;
+    justify-content: space-between;
+    flex-flow: row wrap;
+}
+
+#single-spot-container {
+    border: 1px solid purple;
+    margin: 79px;
+}

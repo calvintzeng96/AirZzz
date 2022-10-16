@@ -44,9 +44,9 @@
 
 .preview-image {
     border: 1px solid blue;
-    width:240px;
-    height:240px;
-    border-radius:12px;
+    width: 240px;
+    height: 240px;
+    border-radius: 12px;
 }
 
 #all-spots-container {
@@ -60,4 +60,29 @@
 #single-spot-container {
     border: 1px solid purple;
     margin: 79px;
+}
+
+.top-margin {
+    margin-top: 79px;
+    text-align: center;
+}
+
+#create-and-menu-container {
+    display: flex;
+}
+
+#create-form {
+    margin: 0 auto;
+    margin-top: 200px;
+    width: 60%;
+    padding: 1em;
+    border: 1px solid #CCC;
+    border-radius: 1em;
+    display: grid;
+    grid-template-columns: 100%;
+    grid-template-rows: auto 1fr
+}
+
+.create-form-elements {
+    height: 24px
 }

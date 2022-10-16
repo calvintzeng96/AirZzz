@@ -16,10 +16,17 @@ export const spotReducer = (state = initialState, action) => {
             spot[action.spot.id] = action.spot
             return spot
 
-        // case GET_MY_SPOTS:
+        case GET_MY_SPOTS:
+            const currentSpots = {}
+            action.spots.spots.forEach(ele => {
+                currentSpots[ele.id] = ele
+            })
+            return {...currentSpots}
 
-        // case NEW_SPOT:
-
+        case NEW_SPOT:
+            const newSpot = {}
+            newSpot[action.spot.id] = action.spot
+            return {...newSpot}
         // case EDIT_SPOT:
 
         // case DESTROY_SPOT:

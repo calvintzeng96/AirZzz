@@ -7,8 +7,11 @@ import * as sessionActions from "./store/session";
 import Navigation from "./components/Navigation";
 
 //COMPONENTS HERE
+import Profile from "./components/Profile";
 import AllSpots from "./components/AllSpots";
 import SingleSpot from "./components/SingleSpot"
+import CurrentSpots from "./components/CurrentSpots"
+import CreateSpot from "./components/CreateSpot";
 //------------------------------
 
 function App() {
@@ -26,6 +29,15 @@ function App() {
 
             <Route exact path="/">
               <AllSpots />
+            </Route>
+            <Route path="/profile">
+              <Profile />
+            </Route>
+            <Route exact path="/spots">
+              <CreateSpot />
+            </Route>
+            <Route exact path="/spots/current">
+              <CurrentSpots />
             </Route>
             <Route path="/spots/:spotId">
               <SingleSpot />

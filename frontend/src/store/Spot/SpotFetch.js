@@ -17,7 +17,6 @@ export const getSingleSpot = (spotId) => async (dispatch) => {
 
     if (res.ok) {
         const spot = await res.json()
-        console.log("lllllllllllllll", spot)
         dispatch(Actions.singleSpot(spot))
     }
 }

@@ -34,19 +34,20 @@
 }
 
 .card-box {
-    border: 1px solid black;
+    /* border: 1px solid black; */
     width: 240px;
-    height: 360px;
+    height: 320px;
     border-radius: 12px;
     margin: 12px;
     cursor: pointer
 }
 
 .preview-image {
-    border: 1px solid blue;
+    /* border: 1px solid blue; */
     width: 240px;
-    height: 240px;
+    height: 220px;
     border-radius: 12px;
+    object-fit: cover;
 }
 
 #all-spots-container {
@@ -85,4 +86,12 @@
 
 .create-form-elements {
     height: 24px
+}
+
+.bold {
+    font-weight: bold;
+}
+
+.grey {
+    color: grey
 }

@@ -24,11 +24,14 @@ const AllSpots = () => {
             {
                 spotsArray.map(ele =>
                 (<div className="card-box" key={ele.id} onClick={() => redirectSingleSpot(ele.id)}>
-                    <div className="preview-image">PREVIEW IMAGE</div>
-                    <div>{ele.city}, {ele.state}</div>
-                    <div>{ele.country}</div>
-                    <div>Name: {ele.name}</div>
-                    <div>${ele.price} /night</div>
+                    <img src="https://www.gstatic.com/webp/gallery/1.jpg" className="preview-image" />
+                    <div>
+                    <div>{ele.avgRating} STARS</div>
+                    <div className="bold">{ele.city}, {ele.state}</div>
+                    <div className="grey">{ele.description}</div>
+
+                    <div><span className="bold">${ele.price}</span> /night</div>
+                    </div>
                 </div>)
                 )
             }

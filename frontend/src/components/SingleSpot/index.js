@@ -5,6 +5,7 @@ import { useParams } from "react-router-dom"
 import { deleteSpot } from "../../store/Spot/SpotFetch"
 import { useHistory } from "react-router-dom"
 import { ModalContext } from "../../context/Modal"
+import { Redirect } from "react-router-dom"
 
 const SingleSpot = () => {
     const sessionUser = useSelector(state => state.session.user);
@@ -16,12 +17,13 @@ const SingleSpot = () => {
 
     useEffect(() => {
         dispatch(getSingleSpot(spotId))
-    }, [spotId])
+    }, [])
 
     if (!spot) return null
 
     const deleteSpotButton = () => {
         dispatch(deleteSpot(spot.id))
+        // return <Redirect to="/profile" />
         history.push("/profile")
     }
 

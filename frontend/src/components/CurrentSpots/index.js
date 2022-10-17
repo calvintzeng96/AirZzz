@@ -15,11 +15,11 @@ const CurrentSpots = () => {
     const dispatch = useDispatch()
 
     useEffect(() => {
-        if (!sessionUser) {
-            alert("test")
-        } else {
+        // if (!sessionUser) {
+        //     alert("test")
+        // } else {
             dispatch(getMySpots())
-        }
+        // }
     }, [])
 
 

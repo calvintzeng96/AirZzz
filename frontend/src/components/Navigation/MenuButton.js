@@ -41,6 +41,11 @@ function MenuButton({ user }) {
     history.push("/spots/current")
   }
 
+  const profilePage = (e) => {
+    e.preventDefault()
+    history.push("/profile")
+  }
+
 
   if (sessionUser) {
     return (
@@ -52,6 +57,7 @@ function MenuButton({ user }) {
           <div className="dropdown-container">
             <div className="dropdown-content">{user.firstName}</div>
             <div className="dropdown-content">sample line</div>
+            <button onClick={profilePage}>Profile</button>
             <button onClick={currentSpots}>My Spots</button>
             <button className="dropdown-content" onClick={logout}>Log Out</button>
           </div>

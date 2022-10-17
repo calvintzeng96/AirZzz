@@ -2,6 +2,7 @@ import React, { useContext, useRef, useState, useEffect } from 'react';
 import './Modal.css';
 import LoginForm from '../components/LoginFormModal/LoginForm';
 import SignupForm from '../components/SignupFormModal/SignupForm';
+import EditForm from '../components/EditFormModal/EditForm';
 
 export const ModalContext = React.createContext();
 
@@ -41,6 +42,14 @@ export function SelectedModals() {
     return (
       <div className="modal">
         <SignupForm />
+        <div onClick={() => setModalType(null)} className="modal-background"></div>
+      </div>
+    )
+  }
+  if (modalType === "Edit") {
+    return (
+      <div className="modal">
+        <EditForm />
         <div onClick={() => setModalType(null)} className="modal-background"></div>
       </div>
     )

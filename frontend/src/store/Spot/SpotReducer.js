@@ -19,16 +19,13 @@ export const spotReducer = (state = initialState, action) => {
             return { ...spot }
 
         case GET_MY_SPOTS:
-            const currentSpots = { ...state, allSpots: { ...state.allSpots } }
+            const currentSpots = {...state, allSpots: {}}
             action.spots.spots.forEach(ele => {
                 currentSpots.allSpots[ele.id] = ele
             })
-            return currentSpots
+            return {...currentSpots}
 
         case NEW_SPOT:
-            // const newSpot = {}
-            // newSpot[action.spot.id] = action.spot
-            // return {...newSpot}
             const newSpot = {
                 ...state, allSpots: { ...state.allSpots, [action.spot.id]: action.spot },
                 singleSpot: { ...state.singleSpot }
@@ -36,12 +33,17 @@ export const spotReducer = (state = initialState, action) => {
             newSpot.singleSpot = action.spot
             return newSpot
 
-        // case EDIT_SPOT:
+        case EDIT_SPOT:
+            const result = action.spot
+            const editedSpot = {...state}
+            editedSpot.allSpots[result.id] = result
+            editedSpot.singleSpot = result
+            return editedSpot
 
         case DESTROY_SPOT:
             const deleteSpot = {allSpots: { ...state.allSpots }, singleSpot: { ...state.singleSpot }}
             deleteSpot.singleSpot = {}
-            delete deleteSpot.allSpots[action.spot]
+            delete deleteSpot.allSpots[action.spot.id]
             return deleteSpot
 
         // case NEW_SPOT_IMAGE:

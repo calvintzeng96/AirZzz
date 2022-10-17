@@ -2,30 +2,32 @@ import { useEffect } from "react"
 import { useDispatch, useSelector } from "react-redux"
 import { useHistory } from "react-router-dom"
 import { getMySpots } from "../../store/Spot/SpotFetch"
+import { Redirect } from "react-router-dom"
 
-const AllSpots = () => {
+const CurrentSpots = () => {
     const sessionUser = useSelector(state => state.session.user);
     const history = useHistory()
     const spots = useSelector(state => {
         return state.spot.allSpots
     })
+
     let spotsArray = Object.values(spots)
     const dispatch = useDispatch()
 
     useEffect(() => {
-        dispatch(getMySpots())
+        if (!sessionUser) {
+            alert("test")
+        } else {
+            dispatch(getMySpots())
+        }
     }, [])
-
-    if (!sessionUser) {
-        history.push("/")
-        alert("PLEASE LOGIN OR SIGNUP TO SEE YOUR CURRENT SPOTS")
-    }
 
 
     const redirectSingleSpot = (spotId) => {
         history.push(`/spots/${spotId}`)
     }
 
+    if (!sessionUser) return <Redirect to="/" />
     return (
         <>
             <h1 className="top-margin">ALL MY SPOTS</h1>
@@ -47,4 +49,4 @@ const AllSpots = () => {
 }
 
 
-export default AllSpots
+export default CurrentSpots

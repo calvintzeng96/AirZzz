@@ -21,7 +21,6 @@ const CreateSpot = () => {
     const history = useHistory()
 
 
-
     const reset = () => {
         setAddress("")
         setCity("")
@@ -34,18 +33,6 @@ const CreateSpot = () => {
         setPrice("")
     }
 
-    // useEffect(() => {
-    //     const errors = []
-    //     if (!address.length) errors.push("address error")
-    //     if (!city.length) errors.push("city error")
-    //     if (!state.length) errors.push("state error")
-    //     if (!country.length) errors.push("country error")
-    //     if (!lat || parseInt(lat) || lat > 90 || lat < -90) errors.push("lat error")
-    //     if (!lng || parseInt(lng) || lat > 180 || lat < -180) errors.push("lng error")
-    //     if (!name.length || name.length > 50) errors.push("name error")
-    //     if (!description.length) errors.push("description error")
-    //     if (!price || parseInt(price) || parseInt(price) < 0) errors.push("price error")
-    // })
 
     const submit = (e) => {
         e.preventDefault();
@@ -60,7 +47,6 @@ const CreateSpot = () => {
             alert("error")
         }
     };
-
 
 
     return (
@@ -143,7 +129,7 @@ const CreateSpot = () => {
                     // required
                     placeholder="Price"
                 />
-                <button onClick={() => reset()}>Reset</button>
+                <button type="reset" onClick={() => reset()}>Reset</button>
                 <button type="submit">Sign Up</button>
             </div>
         </form>

@@ -36,7 +36,8 @@ function MenuButton({ user }) {
     alert("Successfully Logged Out")
   };
 
-  const currentSpots = () => {
+  const currentSpots = (e) => {
+    e.preventDefault()
     history.push("/spots/current")
   }
 

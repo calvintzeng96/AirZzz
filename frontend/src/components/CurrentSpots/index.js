@@ -7,7 +7,7 @@ const AllSpots = () => {
     const sessionUser = useSelector(state => state.session.user);
     const history = useHistory()
     const spots = useSelector(state => {
-        return state.spot
+        return state.spot.allSpots
     })
     let spotsArray = Object.values(spots)
     const dispatch = useDispatch()

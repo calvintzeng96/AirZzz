@@ -9,6 +9,7 @@ export const getAllSpots = () => async (dispatch) => {
     if (res.ok) {
         const spots = await res.json()
         dispatch(Actions.allSpots(spots))
+        return spots
     }
 }
 
@@ -18,6 +19,7 @@ export const getSingleSpot = (spotId) => async (dispatch) => {
     if (res.ok) {
         const spot = await res.json()
         dispatch(Actions.singleSpot(spot))
+        return spot
     }
 }
 
@@ -27,6 +29,7 @@ export const getMySpots = () => async (dispatch) => {
     if (res.ok) {
         const spots = await res.json()
         dispatch(Actions.mySpots(spots))
+        return spots
     }
 }
 
@@ -40,6 +43,7 @@ export const createSpot = (data) => async (dispatch) => {
     if (res.ok) {
         const spot = await res.json()
         dispatch(Actions.newSpot(spot))
+        return spot
     }
 }
 
@@ -53,6 +57,7 @@ export const updateSpot = (data) => async (dispatch) => {
     if (res.ok) {
         const spot = await res.json()
         dispatch(Actions.editSpot(spot))
+        return spot
     }
 }
 

@@ -1,35 +1,48 @@
 import { DESTROY_SPOT, EDIT_SPOT, GET_ALL_SPOTS, GET_MY_SPOTS, GET_SINGLE_SPOT, NEW_SPOT } from "./SpotAction";
 
 
-let initialState = {}
+let initialState = {
+    allSpots: {},
+    singleSpot: {}
+}
 
 export const spotReducer = (state = initialState, action) => {
     switch (action.type) {
         case GET_ALL_SPOTS:
-            const spots = {}
+            const spots = { ...state, allSpots: { ...state.allSpots } }
             action.spots.spots.forEach(ele => {
-                spots[ele.id] = ele
+                spots.allSpots[ele.id] = ele
             })
-            return {...spots}
+            return spots
         case GET_SINGLE_SPOT:
-            const spot = {}
-            spot[action.spot.id] = action.spot
-            return spot
+            const spot = { ...state, singleSpot: action.spot }
+            return { ...spot }
 
         case GET_MY_SPOTS:
-            const currentSpots = {}
+            const currentSpots = { ...state, allSpots: { ...state.allSpots } }
             action.spots.spots.forEach(ele => {
-                currentSpots[ele.id] = ele
+                currentSpots.allSpots[ele.id] = ele
             })
-            return {...currentSpots}
+            return currentSpots
 
         case NEW_SPOT:
-            const newSpot = {}
-            newSpot[action.spot.id] = action.spot
-            return {...newSpot}
+            // const newSpot = {}
+            // newSpot[action.spot.id] = action.spot
+            // return {...newSpot}
+            const newSpot = {
+                ...state, allSpots: { ...state.allSpots, [action.spot.id]: action.spot },
+                singleSpot: { ...state.singleSpot }
+            }
+            newSpot.singleSpot = action.spot
+            return newSpot
+
         // case EDIT_SPOT:
 
-        // case DESTROY_SPOT:
+        case DESTROY_SPOT:
+            const deleteSpot = {allSpots: { ...state.allSpots }, singleSpot: { ...state.singleSpot }}
+            deleteSpot.singleSpot = {}
+            delete deleteSpot.allSpots[action.spot]
+            return deleteSpot
 
         // case NEW_SPOT_IMAGE:
 

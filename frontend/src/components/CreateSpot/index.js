@@ -1,13 +1,10 @@
-import React, { useState, useEffect } from "react";
+import React, { useState } from "react";
 import { createSpot } from "../../store/Spot/SpotFetch";
-import { useDispatch, useSelector } from "react-redux";
+import { useDispatch } from "react-redux";
 import { useHistory } from "react-router-dom";
 
 const CreateSpot = () => {
     const dispatch = useDispatch();
-    // const spot = useSelector(state => {
-    //     return state.spot
-    // })
     const [address, setAddress] = useState("")
     const [city, setCity] = useState("")
     const [state, setState] = useState("");
@@ -17,7 +14,6 @@ const CreateSpot = () => {
     const [name, setName] = useState("");
     const [description, setDescription] = useState("");
     const [price, setPrice] = useState("");
-    const [errors, setErrors] = useState([]);
     const history = useHistory()
 
 
@@ -34,17 +30,45 @@ const CreateSpot = () => {
     }
 
 
+
+
     const submit = (e) => {
         e.preventDefault();
         const data = { address, city, state, country, lat, lng, name, description, price }
-        if (!errors.length) {
-            let done = dispatch(createSpot(data))
-            if (done) {
-                history.push("/profile")
-                alert("New Spot Created")
-            }
+        let error = []
+        //front end err check
+        if (address.length === 0) error.push("address required")
+        if (city.length === 0) error.push("city required")
+        if (state.length === 0) error.push("state required")
+        if (country.length === 0) error.push("country required")
+        if (lat.length === 0) error.push("lat required")
+        if (lat > 90 || lat < -90) error.push("latitude is not valid")
+        if (lng.length === 0) error.push("lng required")
+        if (lng > 180 || lng < -180) error.push("longitude is not valid")
+        if (name.length === 0) error.push("name required")
+        if (name.length > 50) error.push("name needs to be 50 characters or less")
+        if (description.length === 0) error.push("description required")
+        if (price.length === 0) error.push("price required")
+        //--------------
+
+//SOMEHOW ERROR ARRAY IS NOT GET UPDATED IN TIME FOR THE "IF !ERRORS.LENGTH" CHECK......
+//NEED TO FIGURE OUT AND FIX!!!!!!!!!
+
+
+        if (!error.length) {
+            dispatch(createSpot(data))
+                .then(() => {
+                    history.push("/profile")
+                    alert("New Spot Created")
+                }).catch(() => {
+                    alert("This spot already exists")
+                })
         } else {
-            alert("error")
+            let test = ""
+            for (let i = 0; i < error.length; i++) {
+                test += error[i] + "\n"
+            }
+            alert(test)
         }
     };
 
@@ -52,11 +76,11 @@ const CreateSpot = () => {
     return (
         <form onSubmit={submit}>
 
-            <ul>
+            {/* <ul>
                 {errors.map((error, idx) => (
                     <li key={idx}>{error}</li>
                 ))}
-            </ul>
+            </ul> */}
             <div id="create-form">
                 <input className="create-form-elements"
                     type="text"
@@ -91,7 +115,7 @@ const CreateSpot = () => {
                 />
 
                 <input className="create-form-elements"
-                    type="lat"
+                    type="number"
                     value={lat}
                     onChange={(e) => setLat(e.target.value)}
                     // required
@@ -99,7 +123,7 @@ const CreateSpot = () => {
                 />
 
                 <input className="create-form-elements"
-                    type="long"
+                    type="number"
                     value={lng}
                     onChange={(e) => setLng(e.target.value)}
                     // required
@@ -123,7 +147,7 @@ const CreateSpot = () => {
                 />
 
                 <input className="create-form-elements"
-                    type="text"
+                    type="number"
                     value={price}
                     onChange={(e) => setPrice(e.target.value)}
                     // required

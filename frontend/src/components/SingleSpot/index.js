@@ -16,6 +16,9 @@ const SingleSpot = () => {
     const history = useHistory()
     const { setModalType } = useContext(ModalContext)
 
+
+
+
     useEffect(() => {
         dispatch(getSingleSpot(spotId))
     }, [])
@@ -27,6 +30,8 @@ const SingleSpot = () => {
             dispatch(deleteSpot(spot.id)).then(() => history.push("/profile"))
         }
     }
+
+
 
 
 
@@ -49,7 +54,14 @@ const SingleSpot = () => {
                 <div>description: {spot.description}</div>
                 <div>avgRating: {spot.avgRating}</div>
             </div>
-            <SpotReviews spotId={spotId}/>
+
+
+            {sessionUser && spot.ownerId !== sessionUser.id && (
+                <button onClick={() => {
+                    setModalType("CreateReview")
+                }}>Leave a Review</button>
+            )}
+            <SpotReviews spotId={spotId} />
         </>
     )
 }

@@ -21,10 +21,10 @@ export const myReviews = (reviews) => {
     }
 }
 
-export const newReview = (user) => {
+export const newReview = (review) => {
     return {
         type: NEW_REVIEW,
-        user
+        review
     }
 }
 

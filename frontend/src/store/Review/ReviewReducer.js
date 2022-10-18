@@ -1,3 +1,4 @@
+import { bindActionCreators } from "redux"
 import { GET_SPOT_REVIEWS, GET_MY_REVIEWS, NEW_REVIEW, EDIT_REVIEW, DESTROY_REVIEW } from "./ReviewAction"
 
 let initialState = {
@@ -19,9 +20,15 @@ export const reviewReducer = (state = initialState, action) => {
                 myReviews.userReviews[ele.id] = ele
             })
             return myReviews
-        // case NEW_REVIEW:
+        case NEW_REVIEW:
+            const newReview = {...state, reviews: {...state.reviews}}
+            newReview.reviews[action.review.id] = action.review
+            return newReview
 
-        // case EDIT_REVIEW:
+        case EDIT_REVIEW:
+            const editReview = {...state}
+            editReview.currentReview = action.review
+            return editReview
 
         case DESTROY_REVIEW:
             const deleteReview = {...state, userReviews: {...state.userReviews}}

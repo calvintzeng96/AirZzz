@@ -14,6 +14,7 @@ export const spotReducer = (state = initialState, action) => {
                 spots.allSpots[ele.id] = ele
             })
             return spots
+
         case GET_SINGLE_SPOT:
             const spot = { ...state, singleSpot: action.spot }
             return { ...spot }
@@ -43,8 +44,6 @@ export const spotReducer = (state = initialState, action) => {
         case DESTROY_SPOT:
             const deleteSpot = {allSpots: { ...state.allSpots }, singleSpot: { ...state.singleSpot }}
             deleteSpot.singleSpot = {}
-            console.log(action.spot)
-            console.log("-----", action.spot)
             delete deleteSpot.allSpots[action.spotId]
             return {...deleteSpot}
 

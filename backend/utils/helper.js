@@ -98,7 +98,7 @@ const checkReviewDuplicate = async function (spotId, userId, res) {
     })
     if (check) {
         res.status(403)
-        res.json({
+        return res.json({
             message: "User already has a review for this spot",
             statusCode: 403
         })
@@ -123,7 +123,7 @@ const checkBookingOverlap = async function (start, end, spot, res) {
             startB < bookingStart && endB > bookingEnd
         ) {
             res.status(403)
-            res.json({
+            return res.json({
                 message: "Sorry, this spot is already booked for the specified dates",
                 statusCode: 403,
                 errors: {

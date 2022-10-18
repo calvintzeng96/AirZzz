@@ -10,7 +10,7 @@ import Navigation from "./components/Navigation";
 import Profile from "./components/Profile";
 import AllSpots from "./components/AllSpots";
 import SingleSpot from "./components/SingleSpot"
-import CurrentSpots from "./components/CurrentSpots"
+// import CurrentSpots from "./components/CurrentSpots"
 import CreateSpot from "./components/CreateSpot";
 //------------------------------
 
@@ -36,9 +36,9 @@ function App() {
             <Route exact path="/spots">
               <CreateSpot />
             </Route>
-            <Route exact path="/spots/current">
+            {/* <Route exact path="/spots/current">
               <CurrentSpots />
-            </Route>
+            </Route> */}
             <Route path="/spots/:spotId">
               <SingleSpot />
             </Route>

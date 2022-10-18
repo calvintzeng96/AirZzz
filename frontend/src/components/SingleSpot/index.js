@@ -6,6 +6,7 @@ import { deleteSpot } from "../../store/Spot/SpotFetch"
 import { useHistory } from "react-router-dom"
 import { ModalContext } from "../../context/Modal"
 import { Redirect } from "react-router-dom"
+import SpotReviews from "../SpotReviews"
 
 const SingleSpot = () => {
     const sessionUser = useSelector(state => state.session.user);
@@ -22,16 +23,18 @@ const SingleSpot = () => {
     if (!spot) return null
 
     const deleteSpotButton = () => {
-        dispatch(deleteSpot(spot.id))
-        // return <Redirect to="/profile" />
-        history.push("/profile")
+        if (window.confirm("you sure delete?")) {
+            dispatch(deleteSpot(spot.id)).then(() => history.push("/profile"))
+        }
     }
+
+
 
 
     return (
         <>
             <div id="single-spot-container">
-                {sessionUser.id === spot.ownerId && (
+                {sessionUser && sessionUser.id === spot.ownerId && (
                     <>
                         <button onClick={() => setModalType("Edit")}>Edit</button>
                         <button onClick={deleteSpotButton}>Delete</button>
@@ -46,6 +49,7 @@ const SingleSpot = () => {
                 <div>description: {spot.description}</div>
                 <div>avgRating: {spot.avgRating}</div>
             </div>
+            <SpotReviews spotId={spotId}/>
         </>
     )
 }

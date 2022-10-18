@@ -44,10 +44,10 @@ export const editSpot = (spot) => {
     }
 }
 
-export const destroySpot = (spot) => {
+export const destroySpot = (spotId) => {
     return {
         type: DESTROY_SPOT,
-        spot
+        spotId
     }
 }
 

@@ -15,11 +15,8 @@ const CurrentSpots = () => {
     const dispatch = useDispatch()
 
     useEffect(() => {
-        // if (!sessionUser) {
-        //     alert("test")
-        // } else {
+        console.log("USE EFFECT RAN")
             dispatch(getMySpots())
-        // }
     }, [])
 
 

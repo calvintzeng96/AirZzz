@@ -11,6 +11,7 @@ function LoginForm() {
   const { setModalType } = useContext(ModalContext)
 
   const handleSubmit = (e) => {
+
     e.preventDefault();
     setErrors([]);
     return dispatch(sessionActions.login({ credential, password })).then(() => setModalType(null)).catch(
@@ -20,6 +21,15 @@ function LoginForm() {
       }
     );
   };
+
+  const demoLogin = (e) => {
+    // e.preventDefault()
+    setCredential("username1")
+    setPassword("password1")
+    return dispatch(sessionActions.login({ credential, password })).then(() => setModalType(null))
+  }
+
+
 
   return (
     <form className="modal-content" onSubmit={handleSubmit}>
@@ -47,6 +57,8 @@ function LoginForm() {
         />
       </label>
       <button type="submit">Log In</button>
+
+      <button onClick={() => demoLogin()}>Demo Login</button>
     </form>
   );
 }

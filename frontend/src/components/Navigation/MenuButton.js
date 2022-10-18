@@ -58,7 +58,7 @@ function MenuButton({ user }) {
             <div className="dropdown-content">{user.firstName}</div>
             <div className="dropdown-content">sample line</div>
             <button onClick={profilePage}>Profile</button>
-            <button onClick={currentSpots}>My Spots</button>
+            {/* <button onClick={currentSpots}>My Spots</button> */}
             <button className="dropdown-content" onClick={logout}>Log Out</button>
           </div>
         )}

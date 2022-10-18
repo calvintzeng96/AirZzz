@@ -45,7 +45,7 @@ export const spotReducer = (state = initialState, action) => {
             deleteSpot.singleSpot = {}
             console.log(action.spot)
             console.log("-----", action.spot)
-            delete deleteSpot.allSpots[action.spot.deletedId]
+            delete deleteSpot.allSpots[action.spotId]
             return {...deleteSpot}
 
         // case NEW_SPOT_IMAGE:

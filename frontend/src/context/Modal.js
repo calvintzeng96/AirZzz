@@ -3,6 +3,7 @@ import './Modal.css';
 import LoginForm from '../components/LoginFormModal/LoginForm';
 import SignupForm from '../components/SignupFormModal/SignupForm';
 import EditForm from '../components/EditFormModal/EditForm';
+import ReviewForm from "../components/ReviewForm/ReviewForm"
 
 export const ModalContext = React.createContext();
 
@@ -50,6 +51,14 @@ export function SelectedModals() {
     return (
       <div className="modal">
         <EditForm />
+        <div onClick={() => setModalType(null)} className="modal-background"></div>
+      </div>
+    )
+  }
+  if (modalType === "CreateReview") {
+    return (
+      <div className="modal">
+        <ReviewForm />
         <div onClick={() => setModalType(null)} className="modal-background"></div>
       </div>
     )

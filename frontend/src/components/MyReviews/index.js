@@ -20,7 +20,7 @@ const MyReviews = () => {
         }
     }
     const editReviewButton = () => {
-
+        alert("hello")
     }
 
     return (
@@ -30,12 +30,12 @@ const MyReviews = () => {
                 {
                     reviewsArr.map(ele => (
                         <li key={ele.id}>
-                            {console.log(ele)}
-                            <div>{ele.User.firstName}</div>
+                            {/* {console.log(ele)} */}
+                            {/* <div>{ele.User.firstName}</div> */}
                             <div>Review on Spot: {ele.spotId}</div>
                             <div>Review: {ele.review}</div>
                             <div>Stars: {ele.stars}</div>
-                            <button>Edit</button>
+                            <button onClick={() => editReviewButton()}>Edit</button>
                             <button onClick={() => deleteReviewButton(ele.id)}>Delete</button>
                         </li>
                     ))

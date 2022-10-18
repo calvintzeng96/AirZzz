@@ -229,6 +229,7 @@ router.post("/:spotId/reviews", checkUser, checkReviewStar, async (req, res) => 
     const spot = await Spot.findByPk(req.params.spotId)
     let spotId = req.params.spotId
     let userId = req.user.id
+    console.log("----------", req.user)
 
     if (!spot) notFoundErr("Spot", res)
     await checkReviewDuplicate(spotId, userId, res)

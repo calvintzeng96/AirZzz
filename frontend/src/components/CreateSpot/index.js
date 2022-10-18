@@ -51,10 +51,6 @@ const CreateSpot = () => {
         if (price.length === 0) error.push("price required")
         //--------------
 
-//SOMEHOW ERROR ARRAY IS NOT GET UPDATED IN TIME FOR THE "IF !ERRORS.LENGTH" CHECK......
-//NEED TO FIGURE OUT AND FIX!!!!!!!!!
-
-
         if (!error.length) {
             dispatch(createSpot(data))
                 .then(() => {

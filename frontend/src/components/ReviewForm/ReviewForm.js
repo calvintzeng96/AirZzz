@@ -11,21 +11,33 @@ const ReviewForm = () => {
     const history = useHistory()
     const [review, setReview] = useState("")
     const [stars, setStars] = useState("")
-    const {setModalType} = useContext(ModalContext)
+    const { setModalType } = useContext(ModalContext)
 
 
     const submit = (e) => {
+        // e.preventDefault()
+        // const data = { review, stars }
+        // let done = dispatch(createReview(spotId, data))
+        // console.log(done)
+        // if (done) {
+        //     alert("Review Created")
+        //     dispatch(getSpotReviews(spotId))
+        //     setModalType(null)
+        // } else {
+        //     alert("error")
+        // }
+
         e.preventDefault()
         const data = { review, stars }
-        let done = dispatch(createReview(spotId, data))
-        if (done) {
+        dispatch(createReview(spotId, data))
+        .then(() => {
             alert("Review Created")
             dispatch(getSpotReviews(spotId))
-            setModalType(null)
-        } else {
-            alert("error")
-        }
-
+        })
+        .catch(() => {
+            alert("You already created a review for this spot")
+        })
+        setModalType(null)
     }
 
     return (

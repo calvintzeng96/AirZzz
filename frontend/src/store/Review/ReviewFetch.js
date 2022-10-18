@@ -8,7 +8,6 @@ export const getSpotReviews = (spotId) => async (dispatch) => {
 
     if (res.ok) {
         const reviews = await res.json()
-        console.log("pppppppp", reviews)
         dispatch(Actions.spotReviews(reviews))
         return reviews
     }
@@ -19,7 +18,6 @@ export const getMyReviews = () => async (dispatch) => {
 
     if (res.ok) {
         const reviews = await res.json()
-        console.log("pppppppp", reviews)
 
         dispatch(Actions.myReviews(reviews))
         return reviews
@@ -27,14 +25,11 @@ export const getMyReviews = () => async (dispatch) => {
 }
 
 export const createReview = (spotId, data) => async (dispatch) => {
-    console.log("---***__1_", spotId)
-    console.log("---***__2_", data)
     const res = await csrfFetch(`/api/spots/${spotId}/reviews`, {
         method: "POST",
         headers: { "Content-Type": "application/json"},
         body: JSON.stringify(data)
     })
-
     if (res.ok) {
         const review = await res.json()
         dispatch(Actions.newReview(review))

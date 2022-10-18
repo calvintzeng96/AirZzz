@@ -56,7 +56,7 @@ const SingleSpot = () => {
             </div>
 
 
-            {spot.ownerId !== sessionUser.id && (
+            {sessionUser && spot.ownerId !== sessionUser.id && (
                 <button onClick={() => {
                     setModalType("CreateReview")
                 }}>Leave a Review</button>

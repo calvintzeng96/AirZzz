@@ -66,7 +66,7 @@ router.get("/current", checkUser, async (req, res) => {
 //Get Reviews by SpotId
 router.get("/:spotId/reviews", async (req, res) => {
     const spot = await Spot.findByPk(req.params.spotId)
-    if (!spot) notFoundErr("Spot", res)
+    if (!spot) return notFoundErr("Spot", res)
 
     const reviews = await Review.findAll({
         where: {
@@ -92,7 +92,7 @@ router.get("/:spotId/bookings", checkUser, async (req, res) => {
     const spot = await Spot.findByPk(req.params.spotId)
     let bookings;
 
-    if (!spot) notFoundErr("Spot", res)
+    if (!spot) return notFoundErr("Spot", res)
 
     if (currentUser.id == spot.ownerId) {
         bookings = await Booking.findAll({
@@ -132,7 +132,7 @@ router.get("/:spotId", async (req, res) => {
         ]
     })
 
-    if (!spot) notFoundErr("Spot", res)
+    if (!spot) return notFoundErr("Spot", res)
 
     await addRating([spot]),
         await addNumReviews([spot])
@@ -166,7 +166,7 @@ router.post("/:spotId/images", async (req, res) => {
     const spot = await Spot.findByPk(req.params.spotId)
     const currentUser = req.user
 
-    if (!spot) notFoundErr("Spot", res)
+    if (!spot) return notFoundErr("Spot", res)
     notAuthorized(currentUser.id, spot.ownerId, res)
 
     const spotImg = await SpotImage.create({
@@ -185,8 +185,7 @@ router.post("/:spotId/bookings", checkUser, checkEndBeforeStart, async (req, res
     const spot = await Spot.findByPk(req.params.spotId)
     const currentUser = req.user
 
-    if (!spot) notFoundErr("Spot", res)
-
+    if (!spot) return notFoundErr("Spot", res)
     await checkBookingOverlap(startDate, endDate, spot, res)
 
     const booking = await Booking.create({
@@ -205,7 +204,7 @@ router.put("/:spotId", checkUser, validateCreateSpot, async (req, res) => {
     const currentUser = req.user
     const spot = await Spot.findByPk(req.params.spotId)
 
-    if (!spot) notFoundErr("Spot", res)
+    if (!spot) return notFoundErr("Spot", res)
     notAuthorized(currentUser.id, spot.ownerId, res)
 
     spot.update({
@@ -229,10 +228,10 @@ router.post("/:spotId/reviews", checkUser, checkReviewStar, async (req, res) => 
     const spot = await Spot.findByPk(req.params.spotId)
     let spotId = req.params.spotId
     let userId = req.user.id
-    console.log("----------", req.user)
 
-    if (!spot) notFoundErr("Spot", res)
-    await checkReviewDuplicate(spotId, userId, res)
+    if (!spot) return notFoundErr("Spot", res)
+    let check = await checkReviewDuplicate(spotId, userId, res)
+    if (check) return check
 
     const test = await Review.create({
         spotId: req.params.spotId,
@@ -250,7 +249,7 @@ router.delete("/:spotId", checkUser, async (req, res) => {
     const currentUser = req.user
     const spot = await Spot.findByPk(req.params.spotId)
 
-    if (!spot) notFoundErr("Spot", res)
+    if (!spot) return notFoundErr("Spot", res)
     notAuthorized(currentUser.id, spot.ownerId, res)
 
     spot.destroy()

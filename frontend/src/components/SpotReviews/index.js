@@ -20,7 +20,6 @@ const SpotReviews = (props) => {
             <ul>
                 {
                     reviewsArr.map(ele => {
-                        console.log(ele)
                         return (
 
                             <li key={ele.id}>

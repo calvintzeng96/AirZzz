@@ -10,7 +10,6 @@ export const reviewReducer = (state = initialState, action) => {
     switch (action.type) {
         case GET_SPOT_REVIEWS:
             const spotReviews = {...state, reviews: {}}
-            console.log("oooooooooo", action.reviews)
             action.reviews.forEach(ele => {
                 spotReviews.reviews[ele.id] = ele
             })
@@ -26,7 +25,10 @@ export const reviewReducer = (state = initialState, action) => {
             newReview.reviews[action.review.id] = action.review
             return newReview
 
-        // case EDIT_REVIEW:
+        case EDIT_REVIEW:
+            const editReview = {...state}
+            editReview.currentReview = action.review
+            return editReview
 
         case DESTROY_REVIEW:
             const deleteReview = {...state, userReviews: {...state.userReviews}}

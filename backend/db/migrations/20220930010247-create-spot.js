@@ -18,7 +18,8 @@ module.exports = {
         references: {
           model: "Users",
           id: "id"
-        }
+        },
+        onDelete: "CASCADE"
       },
       city: {
         type: Sequelize.STRING,
@@ -48,7 +49,7 @@ module.exports = {
         type: Sequelize.TEXT
       },
       price: {
-        type: Sequelize.DOUBLE(7,2),
+        type: Sequelize.DOUBLE(7, 2),
         allNull: false
       },
       createdAt: {

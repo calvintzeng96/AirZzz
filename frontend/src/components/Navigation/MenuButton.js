@@ -3,12 +3,14 @@ import { useDispatch, useSelector } from "react-redux";
 import * as sessionActions from "../../store/session";
 import "./MenuButton.css"
 import { ModalContext } from "../../context/Modal";
+import { useHistory } from "react-router-dom";
 
 function MenuButton({ user }) {
   const dispatch = useDispatch();
   const [showMenu, setShowMenu] = useState(false);
   const sessionUser = useSelector(state => state.session.user);
   const { setModalType } = useContext(ModalContext)
+  const history = useHistory()
 
   const openMenu = () => {
     if (showMenu) return;
@@ -30,19 +32,33 @@ function MenuButton({ user }) {
   const logout = (e) => {
     e.preventDefault();
     dispatch(sessionActions.logout());
+    history.push("/")
+    alert("Successfully Logged Out")
   };
+
+  const currentSpots = (e) => {
+    e.preventDefault()
+    history.push("/spots/current")
+  }
+
+  const profilePage = (e) => {
+    e.preventDefault()
+    history.push("/profile")
+  }
 
 
   if (sessionUser) {
     return (
       <>
-        <button className="dropdown-button" onClick={openMenu}>
+        <button className="dropdown-button" onClick={() => openMenu()}>
           <i className="fas fa-user-circle" />
         </button>
         {showMenu && (
           <div className="dropdown-container">
             <div className="dropdown-content">{user.firstName}</div>
             <div className="dropdown-content">sample line</div>
+            <button onClick={profilePage}>Profile</button>
+            {/* <button onClick={currentSpots}>My Spots</button> */}
             <button className="dropdown-content" onClick={logout}>Log Out</button>
           </div>
         )}

@@ -6,6 +6,14 @@ import { Route, Switch } from "react-router-dom";
 import * as sessionActions from "./store/session";
 import Navigation from "./components/Navigation";
 
+//COMPONENTS HERE
+import Profile from "./components/Profile";
+import AllSpots from "./components/AllSpots";
+import SingleSpot from "./components/SingleSpot"
+// import CurrentSpots from "./components/CurrentSpots"
+import CreateSpot from "./components/CreateSpot";
+//------------------------------
+
 function App() {
   const dispatch = useDispatch();
   const [isLoaded, setIsLoaded] = useState(false);
@@ -16,16 +24,25 @@ function App() {
   return (
     <>
         <Navigation isLoaded={isLoaded} />
-        <h1 id="test1">TEST LOCATION #1</h1>
-        <div id="test2">TEST LOCATION #2</div>
         {isLoaded && (
           <Switch>
-            {/* <Route path="/login">
-            <LoginFormPage />
-          </Route> */}
-            {/* <Route path="/signup">
-            <SignupFormPage />
-          </Route> */}
+
+            <Route exact path="/">
+              <AllSpots />
+            </Route>
+            <Route path="/profile">
+              <Profile />
+            </Route>
+            <Route exact path="/spots">
+              <CreateSpot />
+            </Route>
+            {/* <Route exact path="/spots/current">
+              <CurrentSpots />
+            </Route> */}
+            <Route path="/spots/:spotId">
+              <SingleSpot />
+            </Route>
+
           </Switch>
         )}
         <div id="footer">Footer Holder</div>

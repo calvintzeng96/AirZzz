@@ -13,20 +13,24 @@ module.exports = (sequelize, DataTypes) => {
       // define association here
       Spot.belongsTo(
         models.User,
-        {foreignKey: "ownerId", as: "Owner"}
+        { foreignKey: "ownerId", as: "Owner" }
       )
       Spot.hasMany(
         models.SpotImage,
-        {foreignKey: "spotId"}
-      )
-      Spot.belongsToMany(
-        models.User,
         {
-          through: models.Booking,
           foreignKey: "spotId",
-          otherKey: "userId"
+          OnDelete: "CASCADE",
+          hooks: true
         }
       )
+      // Spot.belongsToMany(
+      //   models.User,
+      //   {
+      //     through: models.Booking,
+      //     foreignKey: "spotId",
+      //     otherKey: "userId"
+      //   }
+      // )
       Spot.hasMany(
         models.Booking,
         {
@@ -35,14 +39,14 @@ module.exports = (sequelize, DataTypes) => {
           hooks: true
         },
       )
-      Spot.belongsToMany(
-        models.User,
-        {
-          through: models.Review,
-          foreignKey: "spotId",
-          otherKey: "userId"
-        }
-      )
+      // Spot.belongsToMany(
+      //   models.User,
+      //   {
+      //     through: models.Review,
+      //     foreignKey: "spotId",
+      //     otherKey: "userId"
+      //   }
+      // )
       Spot.hasMany(
         models.Review,
         {
@@ -93,13 +97,13 @@ module.exports = (sequelize, DataTypes) => {
     },
     description: DataTypes.TEXT,
     price: {
-      type: DataTypes.DOUBLE(7,2),
+      type: DataTypes.DOUBLE(7, 2),
       allNull: false
     }
   }, {
     sequelize,
     modelName: 'Spot',
-    indexes: [{unique: true, fields: ["address", "city"]}],
+    indexes: [{ unique: true, fields: ["address", "city"] }],
 
   });
   return Spot;

@@ -19,18 +19,32 @@ const AllSpots = () => {
         history.push(`/spots/${spotId}`)
     }
 
+    const starsValue = (stars) => {
+        return stars === null ? false : true
+    }
+
     return (
         <div id="all-spots-container">
             {
                 spotsArray.map(ele =>
                 (<div className="card-box" key={ele.id} onClick={() => redirectSingleSpot(ele.id)}>
                     <img src="https://www.gstatic.com/webp/gallery/1.jpg" className="preview-image" />
-                    <div>
-                    <div>{ele.avgRating} STARS</div>
-                    <div className="bold">{ele.city}, {ele.state}</div>
-                    <div className="grey">{ele.description}</div>
+                    <div id="card-bottom">
 
-                    <div><span className="bold">${ele.price}</span> /night</div>
+                            <div id="spot-stars-card">
+                                {starsValue(ele.avgRating) && (
+                                    <div>⭐ {ele.avgRating}</div>
+                                )}
+                                {!starsValue(ele.avgRating) && (
+                                    <div>⭐ New</div>
+                                )}
+                            </div>
+                            <div id="country">{ele.country}</div>
+                            <div id="city-state" className="bold">{ele.city}, {ele.state}</div>
+                            <div id="description-card" className="grey">{ele.description}</div>
+
+                            <div id="spot-price"><span className="bold">${ele.price}</span> /night</div>
+
                     </div>
                 </div>)
                 )

@@ -3,6 +3,7 @@ import { NavLink, useHistory } from "react-router-dom";
 import { useSelector } from "react-redux";
 import MenuButton from "./MenuButton";
 import "./Navigation.css";
+import logo from "../../assets/home-logo.png"
 
 function Navigation({ isLoaded }) {
   const sessionUser = useSelector(state => state.session.user);
@@ -22,7 +23,7 @@ function Navigation({ isLoaded }) {
       <MenuButton user={sessionUser} />
     );
     createSpotButton = (
-      <button onClick={() => goToCreateSpotForm()}>Host Your Place</button>)
+      <button id="host-spot" onClick={() => goToCreateSpotForm()}>Host Your Place</button>)
   } else {
     sessionLinks = (
       <div>
@@ -35,7 +36,9 @@ function Navigation({ isLoaded }) {
     <>
       <div id="nav-bar">
         <div id="home">
-          <NavLink exact to="/">Home</NavLink>
+          <NavLink exact to="/">
+            <img id="home-logo" src={logo} />
+          </NavLink>
         </div>
         <div id="create-and-menu-container">
           <div>

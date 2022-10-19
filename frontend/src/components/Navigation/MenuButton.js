@@ -50,14 +50,13 @@ function MenuButton({ user }) {
   if (sessionUser) {
     return (
       <>
-        <button className="dropdown-button" onClick={() => openMenu()}>
+        <button id="menu-button" className="dropdown-button" onClick={() => openMenu()}>
           <i className="fas fa-user-circle" />
         </button>
         {showMenu && (
           <div className="dropdown-container">
-            <div className="dropdown-content">{user.firstName}</div>
-            <div className="dropdown-content">sample line</div>
-            <button onClick={profilePage}>Profile</button>
+            <div id="hi-name" className="dropdown-content">Hello, {user.firstName}</div>
+            <button className="dropdown-content" onClick={profilePage}>Profile</button>
             {/* <button onClick={currentSpots}>My Spots</button> */}
             <button className="dropdown-content" onClick={logout}>Log Out</button>
           </div>

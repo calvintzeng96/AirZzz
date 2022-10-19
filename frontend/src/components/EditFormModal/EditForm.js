@@ -66,13 +66,13 @@ function EditForm() {
 
     return (
         <form className="modal-content" onSubmit={submit}>
-            <ul>
+            {/* <ul>
                 {errors.map((error, idx) => (
                     <li key={idx}>{error}</li>
                 ))}
-            </ul>
-            <div>
-                <input className="create-form-elements"
+            </ul> */}
+            {/* <div> */}
+                <input className="create-form-elements modal-content-2"
                     type="text"
                     value={address}
                     onChange={(e) => setAddress(e.target.value)}
@@ -80,7 +80,7 @@ function EditForm() {
                     placeholder="Address"
                 />
 
-                <input className="create-form-elements"
+                <input className="create-form-elements modal-content-2"
                     type="text"
                     value={city}
                     onChange={(e) => setCity(e.target.value)}
@@ -88,7 +88,7 @@ function EditForm() {
                     placeholder="City"
                 />
 
-                <input className="create-form-elements"
+                <input className="create-form-elements modal-content-2"
                     type="text"
                     value={state}
                     onChange={(e) => setState(e.target.value)}
@@ -96,7 +96,7 @@ function EditForm() {
                     placeholder="State"
                 />
 
-                <input className="create-form-elements"
+                <input className="create-form-elements modal-content-2"
                     type="text"
                     value={country}
                     onChange={(e) => setCountry(e.target.value)}
@@ -104,7 +104,7 @@ function EditForm() {
                     placeholder="Country"
                 />
 
-                <input className="create-form-elements"
+                <input className="create-form-elements modal-content-2"
                     type="lat"
                     value={lat}
                     onChange={(e) => setLat(e.target.value)}
@@ -112,7 +112,7 @@ function EditForm() {
                     placeholder="Latitude"
                 />
 
-                <input className="create-form-elements"
+                <input className="create-form-elements modal-content-2"
                     type="long"
                     value={lng}
                     onChange={(e) => setLng(e.target.value)}
@@ -120,7 +120,7 @@ function EditForm() {
                     placeholder="Longitude"
                 />
 
-                <input className="create-form-elements"
+                <input className="create-form-elements modal-content-2"
                     type="text"
                     value={name}
                     onChange={(e) => setName(e.target.value)}
@@ -128,7 +128,7 @@ function EditForm() {
                     placeholder="Name"
                 />
 
-                <input className="create-form-elements"
+                <input className="create-form-elements modal-content-2"
                     type="text"
                     value={description}
                     onChange={(e) => setDescription(e.target.value)}
@@ -136,16 +136,16 @@ function EditForm() {
                     placeholder="Description"
                 />
 
-                <input className="create-form-elements"
+                <input className="create-form-elements modal-content-2"
                     type="text"
                     value={price}
                     onChange={(e) => setPrice(e.target.value)}
                     // required
                     placeholder="Price"
                 />
-                <button type="reset" onClick={() => reset()}>Reset</button>
-                <button type="submit">Submit</button>
-            </div>
+                <button className="modal-content-2" type="reset" onClick={() => reset()}>Reset</button>
+                <button className="modal-content-2" type="submit">Submit</button>
+            {/* </div> */}
         </form>
     );
 }

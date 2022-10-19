@@ -42,13 +42,14 @@ function ReviewEditFormModal() {
 
             <form className="modal-content" onSubmit={submit}>
             <div>Edit this spot</div>
-                <ul>
+                {/* <ul>
                     {errors.map((error, idx) => (
                         <li key={idx}>{error}</li>
                     ))}
-                </ul>
-                <div>
-                    <input className="create-form-elements"
+                </ul> */}
+                {/* <div> */}
+
+                    <input className="create-form-elements modal-content-2"
                         type="text"
                         value={review}
                         onChange={(e) => setReview(e.target.value)}
@@ -56,16 +57,16 @@ function ReviewEditFormModal() {
                         placeholder="Review"
                     />
 
-                    <input className="create-form-elements"
+                    <input className="create-form-elements modal-content-2"
                         type="number"
                         value={stars}
                         onChange={(e) => setStars(e.target.value)}
                         // required
                         placeholder="Stars"
                     />
-                    <button type="reset" onClick={() => reset()}>Reset</button>
-                    <button type="submit">Submit</button>
-                </div>
+                    <button className="modal-content-2" type="reset" onClick={() => reset()}>Reset</button>
+                    <button className="modal-content-2" type="submit">Submit</button>
+                {/* </div> */}
             </form>
         </div>
     );

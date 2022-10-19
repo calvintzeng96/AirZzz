@@ -28,7 +28,8 @@ const AllSpots = () => {
             {
                 spotsArray.map(ele =>
                 (<div className="card-box" key={ele.id} onClick={() => redirectSingleSpot(ele.id)}>
-                    <img src="https://www.gstatic.com/webp/gallery/1.jpg" className="preview-image" />
+                    <img src={ele.previewImage} className="preview-image" />
+                    {/* {console.log(ele.previewImage)} */}
                     <div id="card-bottom">
 
                             <div id="spot-stars-card">

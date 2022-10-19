@@ -7,6 +7,8 @@ import { useHistory } from "react-router-dom"
 import { ModalContext } from "../../context/Modal"
 import { Redirect } from "react-router-dom"
 import SpotReviews from "../SpotReviews"
+import "./index.css"
+
 
 const SingleSpot = () => {
     const sessionUser = useSelector(state => state.session.user);

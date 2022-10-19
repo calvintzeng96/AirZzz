@@ -15,17 +15,6 @@ const ReviewForm = () => {
 
 
     const submit = (e) => {
-        // e.preventDefault()
-        // const data = { review, stars }
-        // let done = dispatch(createReview(spotId, data))
-        // console.log(done)
-        // if (done) {
-        //     alert("Review Created")
-        //     dispatch(getSpotReviews(spotId))
-        //     setModalType(null)
-        // } else {
-        //     alert("error")
-        // }
 
         e.preventDefault()
         const data = { review, stars }
@@ -42,14 +31,14 @@ const ReviewForm = () => {
 
     return (
         <form className="modal-content" onSubmit={submit}>
-            <textarea style={{ width: "300px", height: "150px", resize: "none" }}
+            <textarea className="modal-content-2" style={{ width: "300px", height: "150px", resize: "none" }}
                 // type="textarea"
                 value={review}
                 onChange={(e) => setReview(e.target.value)}
                 required
                 placeholder="Review :)"
             />
-            <input
+            <input className="modal-content-2"
                 type="number"
                 min="1"
                 max="5"
@@ -58,7 +47,7 @@ const ReviewForm = () => {
                 required
                 placeholder="0"
             />
-            <button type="submit">Submit</button>
+            <button className="modal-content-2" type="submit">Submit</button>
 
         </form>
     )

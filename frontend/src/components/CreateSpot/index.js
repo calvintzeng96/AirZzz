@@ -2,6 +2,7 @@ import React, { useState } from "react";
 import { createSpot } from "../../store/Spot/SpotFetch";
 import { useDispatch } from "react-redux";
 import { useHistory } from "react-router-dom";
+import "./index.css"
 
 const CreateSpot = () => {
     const dispatch = useDispatch();
@@ -70,15 +71,10 @@ const CreateSpot = () => {
 
 
     return (
-        <form onSubmit={submit}>
-
-            {/* <ul>
-                {errors.map((error, idx) => (
-                    <li key={idx}>{error}</li>
-                ))}
-            </ul> */}
+        <form id="create-form-container" onSubmit={submit}>
+            <h2>Host Your Home Here</h2>
             <div id="create-form">
-                <input className="create-form-elements"
+                <input className="input-elements top-element"
                     type="text"
                     value={address}
                     onChange={(e) => setAddress(e.target.value)}
@@ -86,7 +82,7 @@ const CreateSpot = () => {
                     placeholder="Address"
                 />
 
-                <input className="create-form-elements"
+                <input className="input-elements"
                     type="text"
                     value={city}
                     onChange={(e) => setCity(e.target.value)}
@@ -94,7 +90,7 @@ const CreateSpot = () => {
                     placeholder="City"
                 />
 
-                <input className="create-form-elements"
+                <input className="input-elements"
                     type="text"
                     value={state}
                     onChange={(e) => setState(e.target.value)}
@@ -102,7 +98,7 @@ const CreateSpot = () => {
                     placeholder="State"
                 />
 
-                <input className="create-form-elements"
+                <input className="input-elements"
                     type="text"
                     value={country}
                     onChange={(e) => setCountry(e.target.value)}
@@ -110,7 +106,7 @@ const CreateSpot = () => {
                     placeholder="Country"
                 />
 
-                <input className="create-form-elements"
+                <input className="input-elements"
                     type="number"
                     value={lat}
                     onChange={(e) => setLat(e.target.value)}
@@ -118,7 +114,7 @@ const CreateSpot = () => {
                     placeholder="Latitude"
                 />
 
-                <input className="create-form-elements"
+                <input className="input-elements"
                     type="number"
                     value={lng}
                     onChange={(e) => setLng(e.target.value)}
@@ -126,7 +122,7 @@ const CreateSpot = () => {
                     placeholder="Longitude"
                 />
 
-                <input className="create-form-elements"
+                <input className="input-elements"
                     type="text"
                     value={name}
                     onChange={(e) => setName(e.target.value)}
@@ -134,7 +130,7 @@ const CreateSpot = () => {
                     placeholder="Name"
                 />
 
-                <input className="create-form-elements"
+                <input className="input-elements"
                     type="text"
                     value={description}
                     onChange={(e) => setDescription(e.target.value)}
@@ -142,15 +138,15 @@ const CreateSpot = () => {
                     placeholder="Description"
                 />
 
-                <input className="create-form-elements"
+                <input className="input-elements bot-element"
                     type="number"
                     value={price}
                     onChange={(e) => setPrice(e.target.value)}
                     // required
                     placeholder="Price"
                 />
-                <button type="reset" onClick={() => reset()}>Reset</button>
-                <button type="submit">Submit</button>
+                <button id="create-spot-reset" className="create-spot-buttons" type="reset" onClick={() => reset()}>Reset</button>
+                <button id="create-spot-submit" className="create-spot-buttons" type="submit">Submit</button>
             </div>
         </form>
     )

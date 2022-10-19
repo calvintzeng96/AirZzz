@@ -4,20 +4,22 @@
     position: absolute;
     right: 100px;
     z-index: 1;
-    top: 62px;
+    top: 80px;
     border-radius: 10px;
     text-align: center;
     width: 180px;
     /* box-shadow: 5px 8px 5px grey; */
 }
 
-#menu-button {
+.menu-button {
     width: 84px;
     height: 42px;
     border-radius: 21px;
     border: transparent;
     background-color: white;
-    border: 2px solid lightgrey
+    border: 2px solid lightgrey;
+    margin-left: 20px;
+    cursor: pointer;
 }
 
 #menu-button:hover {
@@ -36,6 +38,7 @@
     background-color: #f1f1f1;
     border-radius: 18px;
     box-shadow: 5px 8px 5px grey;
+    cursor: pointer;
 }
 
 #hi-name {

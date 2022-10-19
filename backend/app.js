@@ -21,6 +21,8 @@ app.use(express.json());
 
 const routes = require("./routes");
 
+
+
 // Security Middleware
 if (!isProduction) {
     // enable cors only in development
@@ -41,10 +43,9 @@ app.use(
             httpOnly: true
         }
     })
-    );
+);
 
 app.use(routes);
-
 
 //catches any unfiltered requests and sends you to error handler.
 app.use((_req, _res, next) => {
@@ -79,7 +80,7 @@ app.use((err, _req, _res, next) => {
 //Error formatter
 app.use((err, _req, res, _next) => {
     res.status(err.status || 500);
-    res.json({
+    return res.json({
         message: err.message,
         statusCode: err.status,
         errors: err.errors,

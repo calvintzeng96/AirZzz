@@ -1,4 +1,5 @@
 import { csrfFetch } from "./csrf";
+import { loginError } from "./Error/ErrorReducer";
 
 const initialState = { user: null };
 
@@ -50,9 +51,9 @@ export const login = (user) => async (dispatch) => {
             password,
         }),
     });
-    const data = await res.json();
-    dispatch(setUser(data));
-    return res;
+        const data = await res.json();
+        dispatch(setUser(data));
+        return res
 };
 
 //Restore User

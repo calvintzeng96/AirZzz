@@ -1,7 +1,9 @@
-import React, { useContext, useState } from "react";
+import React, { useContext, useEffect, useState } from "react";
 import * as sessionActions from "../../store/session";
-import { useDispatch } from "react-redux";
+import { useDispatch, useSelector } from "react-redux";
 import { ModalContext } from "../../context/Modal";
+import { loginError } from "../../store/Error/ErrorReducer";
+import { clearErrorStore } from "../../store/Error/ErrorReducer";
 
 function LoginForm() {
   const dispatch = useDispatch();
@@ -9,6 +11,16 @@ function LoginForm() {
   const [password, setPassword] = useState("");
   const [errors, setErrors] = useState([]);
   const { setModalType } = useContext(ModalContext)
+  const errorStore = useSelector(state => state.error.errors)
+
+  useEffect(() => {
+    //alert doesnt work, or do action i want
+    if (Object.keys(errorStore).length) {
+      let test = errorStore.message
+      alert(test)
+      dispatch(clearErrorStore())
+    }
+  }, [errorStore])
 
   const handleSubmit = (e) => {
 
@@ -17,7 +29,14 @@ function LoginForm() {
     return dispatch(sessionActions.login({ credential, password })).then(() => setModalType(null)).catch(
       async (res) => {
         const data = await res.json();
-        if (data && data.errors) setErrors(data.errors);
+        // if (data && data.errors) setErrors(data.errors);
+        // console.log("--------------------------")
+        console.log(data)
+        // console.log("--------------------------")
+        //dispatch action => error store/reducer
+        if (data) {
+          dispatch(loginError(data))
+        }
       }
     );
   };
@@ -33,32 +52,29 @@ function LoginForm() {
 
   return (
     <form className="modal-content" onSubmit={handleSubmit}>
-      <ul>
+      {/* <ul>
         {errors.map((error, idx) => (
           <li key={idx}>{error}</li>
         ))}
-      </ul>
-      <label>
-        Username or Email
-        <input
-          type="text"
-          value={credential}
-          onChange={(e) => setCredential(e.target.value)}
-          required
-        />
-      </label>
-      <label>
-        Password
-        <input
-          type="password"
-          value={password}
-          onChange={(e) => setPassword(e.target.value)}
-          required
-        />
-      </label>
-      <button type="submit">Log In</button>
+      </ul> */}
+      <input className="modal-content-2"
+        type="text"
+        value={credential}
+        onChange={(e) => setCredential(e.target.value)}
+        // required
+        placeholder="Username or Email"
+      />
 
-      <button onClick={() => demoLogin()}>Demo Login</button>
+      <input className="modal-content-2"
+        type="password"
+        value={password}
+        onChange={(e) => setPassword(e.target.value)}
+        // required
+        placeholder="Password"
+      />
+      <button className="modal-content-2" type="submit">Log In</button>
+
+      <button className="modal-content-2" onClick={() => demoLogin()}>Demo Login</button>
     </form>
   );
 }

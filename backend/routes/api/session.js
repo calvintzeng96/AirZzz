@@ -22,15 +22,13 @@ const validateLogin = [
 router.post("/", validateLogin, async (req, res, next) => {
     const { credential, password } = req.body;
     const user = await User.scope("currentUser").login({ credential, password });
-
-    if (!user) {
-        const err = new Error();
+        if (!user) {
+        const err = {}
         err.message = "Invalid credentials"
         err.status = 401;
         res.status(401)
-        res.json(err)
+        return res.json(err)
     }
-
     setTokenCookie(res, user);
     user.dataValues.token = setTokenCookie(res, user)
 

@@ -50,7 +50,7 @@ function MenuButton({ user }) {
   if (sessionUser) {
     return (
       <>
-        <button id="menu-button" className="dropdown-button" onClick={() => openMenu()}>
+        <button className="menu-button" onClick={() => openMenu()}>
           <i className="fas fa-user-circle" />
         </button>
         {showMenu && (
@@ -66,15 +66,15 @@ function MenuButton({ user }) {
   } else {
     return (
       <>
-        <button className="dropdown-button" onClick={openMenu}>
+        <button className="menu-button" onClick={openMenu}>
           <i className="fas fa-user-circle" />
         </button>
         {showMenu && (
           <div className="dropdown-container">
-            <button onClick={() => {
+            <button className="dropdown-content" onClick={() => {
               setModalType("Login")
             }}>Log In</button>
-            <button onClick={() => {
+            <button className="dropdown-content"onClick={() => {
               setModalType("Signup")
             }}>Sign Up</button>
           </div>

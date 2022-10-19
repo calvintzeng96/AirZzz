@@ -1,7 +1,9 @@
-import React, { useState, useContext } from "react";
+import React, { useState, useContext, useEffect } from "react";
 import * as sessionActions from "../../store/session";
-import { useDispatch } from "react-redux";
+import { useDispatch, useSelector } from "react-redux";
 import { ModalContext } from "../../context/Modal";
+import { processError } from "../../store/Error/ErrorReducer";
+import { clearErrorStore } from "../../store/Error/ErrorReducer";
 
 function SignupForm() {
     const dispatch = useDispatch();
@@ -13,33 +15,57 @@ function SignupForm() {
     const [confirmPassword, setConfirmPassword] = useState("");
     const [errors, setErrors] = useState([]);
     const { setModalType } = useContext(ModalContext)
+    const errorStore = useSelector(state => state.error.errors)
+
+    useEffect(() => {
+        //using hashmap to make sure no repeat error msg
+        //terrible backend design
+        if (Object.keys(errorStore).length) {
+            let errMsg = ""
+            if (errorStore.statusCode === 400) {
+                let set = new Set()
+                for (let i = 0; i < errorStore.errors.length; i++) {
+                    if (set.has(errorStore.errors[i])) continue
+                    set.add(errorStore.errors[i])
+                    errMsg += errorStore.errors[i] + "\n"
+                }
+            } else {
+                errMsg = errorStore.message
+            }
+            alert(errMsg)
+            dispatch(clearErrorStore())
+        }
+    }, [errorStore])
+
+
 
     const handleSubmit = (e) => {
         e.preventDefault();
         if (password === confirmPassword) {
             setErrors([]);
             return dispatch(sessionActions.signup({ firstName, lastName, email, username, password }))
-                .then(() => setModalType(null))
+                .then(() => {
+                    setModalType(null)
+                    alert("Successfully signed up. You are now currently Logged In")
+                })
                 .catch(async (res) => {
                     const data = await res.json();
-                    if (data && data.errors) setErrors(data.errors);
+                    if (data) {
+                        dispatch(processError(data))
+                    }
                 });
+        } else {
+            alert("Confirm Password field must be the same as the Password field")
         }
-        return setErrors(["Confirm Password field must be the same as the Password field"]);
     };
 
     return (
         <form className="modal-content" onSubmit={handleSubmit}>
-            {/* <ul>
-                {errors.map((error, idx) => (
-                    <li key={idx}>{error}</li>
-                ))}
-            </ul> */}
             <input className="modal-content-2"
                 type="text"
                 value={username}
                 onChange={(e) => setUsername(e.target.value)}
-                required
+                // required
                 placeholder="Username"
 
             />
@@ -47,35 +73,35 @@ function SignupForm() {
                 type="text"
                 value={firstName}
                 onChange={(e) => setFirstName(e.target.value)}
-                required
+                // required
                 placeholder="First Name"
             />
             <input className="modal-content-2"
                 type="text"
                 value={lastName}
                 onChange={(e) => setLastName(e.target.value)}
-                required
+                // required
                 placeholder="Last Name"
             />
             <input className="modal-content-2"
                 type="text"
                 value={email}
                 onChange={(e) => setEmail(e.target.value)}
-                required
+                // required
                 placeholder="Email"
             />
             <input className="modal-content-2"
                 type="password"
                 value={password}
                 onChange={(e) => setPassword(e.target.value)}
-                required
+                // required
                 placeholder="Password"
             />
             <input className="modal-content-2"
                 type="password"
                 value={confirmPassword}
                 onChange={(e) => setConfirmPassword(e.target.value)}
-                required
+                // required
                 placeholder="Confirm Password"
 
             />

@@ -3,6 +3,8 @@ import { useDispatch } from "react-redux";
 import { ModalContext } from "../../context/Modal";
 import { getMyReviews, updateReview } from "../../store/Review/ReviewFetch";
 import { useSelector } from "react-redux";
+import { clearErrorStore } from "../../store/Error/ErrorReducer";
+import { processError } from "../../store/Error/ErrorReducer";
 
 function ReviewEditFormModal() {
     const dispatch = useDispatch();
@@ -11,6 +13,7 @@ function ReviewEditFormModal() {
     const [errors, setErrors] = useState([]);
     const { setModalType } = useContext(ModalContext)
     const reviewState = useSelector(state => state.review.currentReview)
+    const errorStore = useSelector(state => state.error.errors)
 
     useEffect(() => {
         setReview(reviewState.review)
@@ -22,33 +25,46 @@ function ReviewEditFormModal() {
         setStars("")
     }
 
+    useEffect(() => {
+        if (Object.keys(errorStore).length) {
+          let errMsg = ""
+          if (errorStore.statusCode === 400) {
+            for (let i = 0; i < errorStore.errors.length; i++) {
+              errMsg += errorStore.errors[i] + "\n"
+            }
+          } else {
+            errMsg = errorStore.message
+          }
+          alert(errMsg)
+          dispatch(clearErrorStore())
+        }
+      }, [errorStore])
+
+
     const submit = (e) => {
         e.preventDefault();
         const data = { review, stars }
         if (!errors.length) {
-            dispatch(updateReview(reviewState.id, data))
+            return dispatch(updateReview(reviewState.id, data))
                 .then(() => {
                     alert("Review Updated")
                     dispatch(getMyReviews())
+                    setModalType(null)
                 })
-                .catch(() => {
-                    alert("error")
+                .catch(async (res) => {
+                    const data = await res.json();
+                    console.log(data)
+                    if (data) {
+                        dispatch(processError(data))
+                    }
                 })
-            setModalType(null)
-        };
+            };
     }
     return (
         <div>
 
             <form className="modal-content" onSubmit={submit}>
             <div>Edit this spot</div>
-                {/* <ul>
-                    {errors.map((error, idx) => (
-                        <li key={idx}>{error}</li>
-                    ))}
-                </ul> */}
-                {/* <div> */}
-
                     <input className="create-form-elements modal-content-2"
                         type="text"
                         value={review}

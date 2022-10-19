@@ -2,7 +2,7 @@ import React, { useContext, useEffect, useState } from "react";
 import * as sessionActions from "../../store/session";
 import { useDispatch, useSelector } from "react-redux";
 import { ModalContext } from "../../context/Modal";
-import { loginError } from "../../store/Error/ErrorReducer";
+import { processError } from "../../store/Error/ErrorReducer";
 import { clearErrorStore } from "../../store/Error/ErrorReducer";
 
 function LoginForm() {
@@ -13,11 +13,18 @@ function LoginForm() {
   const { setModalType } = useContext(ModalContext)
   const errorStore = useSelector(state => state.error.errors)
 
+  //ERROR HANDLING POPUP
   useEffect(() => {
-    //alert doesnt work, or do action i want
     if (Object.keys(errorStore).length) {
-      let test = errorStore.message
-      alert(test)
+      let errMsg = ""
+      if (errorStore.statusCode === 400) {
+        for (let i = 0; i < errorStore.errors.length; i++) {
+          errMsg += errorStore.errors[i] + "\n"
+        }
+      } else {
+        errMsg = errorStore.message
+      }
+      alert(errMsg)
       dispatch(clearErrorStore())
     }
   }, [errorStore])
@@ -29,13 +36,9 @@ function LoginForm() {
     return dispatch(sessionActions.login({ credential, password })).then(() => setModalType(null)).catch(
       async (res) => {
         const data = await res.json();
-        // if (data && data.errors) setErrors(data.errors);
-        // console.log("--------------------------")
         console.log(data)
-        // console.log("--------------------------")
-        //dispatch action => error store/reducer
         if (data) {
-          dispatch(loginError(data))
+          dispatch(processError(data))
         }
       }
     );

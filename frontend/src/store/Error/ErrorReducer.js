@@ -1,14 +1,20 @@
 
-
-const LOGIN_ERROR = "/errors/LOGIN_ERROR"
+const PROCESS_ERROR = "/errors/PROCESS_ERROR"
 const CLEAR_ERROR = "/errors/CLEAR_ERROR"
 
-export const loginError = (data) => {
+export const processError = (data) => {
     return {
-        type: LOGIN_ERROR,
+        type: PROCESS_ERROR,
         data
     }
 }
+
+// export const signupError = (data) => {
+//     return {
+//         type: SIGNUP_ERROR,
+//         data
+//     }
+// }
 
 export const clearErrorStore = () => {
     return {
@@ -24,6 +30,7 @@ let initialState = {
     errors: {}
 }
 
+//ERROR STATE STRUCTURE AFTER PUTTING IN DATA
 // let test = {
 //     errors: {
 //         message: 'Invalid credentials',
@@ -33,10 +40,10 @@ let initialState = {
 
 export const errorReducer = (state = initialState, action) => {
     switch (action.type) {
-        case LOGIN_ERROR:
-            const loginError = {...state}
-            loginError.errors = action.data
-            return loginError
+        case PROCESS_ERROR:
+            const processError = {...state}
+            processError.errors = action.data
+            return processError
         case CLEAR_ERROR:
             const clearError = {...state}
             clearError.errors = {}

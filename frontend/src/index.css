@@ -80,7 +80,7 @@
 }
 
 #all-spots-container {
-    border: 1px solid purple;
+    /* border: 1px solid purple; */
     margin: 79px;
     display: flex;
     justify-content: space-between;

@@ -16,12 +16,16 @@ const CurrentSpots = () => {
 
     useEffect(() => {
         console.log("USE EFFECT RAN")
-            dispatch(getMySpots())
+        dispatch(getMySpots())
     }, [])
 
 
     const redirectSingleSpot = (spotId) => {
         history.push(`/spots/${spotId}`)
+    }
+
+    const starsValue = (stars) => {
+        return stars === null ? false : true
     }
 
     if (!sessionUser) return <Redirect to="/" />
@@ -32,13 +36,29 @@ const CurrentSpots = () => {
                 {
                     spotsArray.map(ele =>
                     (<div className="card-box" key={ele.id} onClick={() => redirectSingleSpot(ele.id)}>
-                        <div className="preview-image">PREVIEW IMAGE</div>
-                        <div>{ele.city}, {ele.state}</div>
-                        <div>{ele.country}</div>
-                        <div>Name: {ele.name}</div>
-                        <div>${ele.price} /night</div>
+                        <img src={ele.previewImage} className="preview-image" />
+                        {/* {console.log(ele.previewImage)} */}
+                        <div id="card-bottom">
+
+                            <div id="spot-stars-card">
+                                {starsValue(ele.avgRating) && (
+                                    <div>⭐ {ele.avgRating}</div>
+                                )}
+                                {!starsValue(ele.avgRating) && (
+                                    <div>⭐ New</div>
+                                )}
+                            </div>
+                            <div id="country">{ele.country}</div>
+                            <div id="city-state" className="bold">{ele.city}, {ele.state}</div>
+                            <div id="description-card" className="grey">{ele.description}</div>
+
+                            <div id="spot-price"><span className="bold">${ele.price}</span> /night</div>
+
+                        </div>
                     </div>)
                     )
+
+
                 }
             </div>
         </>

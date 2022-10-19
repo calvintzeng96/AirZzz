@@ -1,6 +1,7 @@
 import { useEffect } from "react"
 import { useDispatch, useSelector } from "react-redux"
 import { getSpotReviews } from "../../store/Review/ReviewFetch"
+import "./index.css"
 
 const SpotReviews = (props) => {
     // const sessionUser = useSelector(state => state.session.User)
@@ -15,26 +16,28 @@ const SpotReviews = (props) => {
 
 
     return (
-        <div>
-            <h1>Reviews</h1>
-            <ul>
-                {
-                    reviewsArr.map(ele => {
-                        return (
+        <div id="spot-review-container">
+            {
+                reviewsArr.map(ele => {
+                    return (
+                        <div id="single-review" key={ele.id}>
+                            <div id="review-profile">
 
-                            <li key={ele.id}>
+                                <i id="review-icon" className="fas fa-user-circle" />
                                 {ele.User && (
-                                    <div>{ele.User.firstName}</div>
+                                    <div id="review-name">{ele.User.firstName}</div>
 
                                 )}
-                                <div>Review: {ele.review}</div>
-                                <div>Stars: {ele.stars}</div>
-                            </li>
-                        )
-                    })
-                }
-            </ul>
-            <h1>REVIEWS PLACEHOLDER</h1>
+                                <div id="review-date">Sample Date</div>
+                                <div id="review-star">{ele.stars} ⭐</div>
+                            </div>
+                            <br></br>
+                            <div>{ele.review}</div>
+                        </div>
+                    )
+                })
+            }
+
         </div>
     )
 }

@@ -27,18 +27,18 @@ function ReviewEditFormModal() {
 
     useEffect(() => {
         if (Object.keys(errorStore).length) {
-          let errMsg = ""
-          if (errorStore.statusCode === 400) {
-            for (let i = 0; i < errorStore.errors.length; i++) {
-              errMsg += errorStore.errors[i] + "\n"
+            let errMsg = ""
+            if (errorStore.statusCode === 400) {
+                for (let i = 0; i < errorStore.errors.length; i++) {
+                    errMsg += errorStore.errors[i] + "\n"
+                }
+            } else {
+                errMsg = errorStore.message
             }
-          } else {
-            errMsg = errorStore.message
-          }
-          alert(errMsg)
-          dispatch(clearErrorStore())
+            alert(errMsg)
+            dispatch(clearErrorStore())
         }
-      }, [errorStore])
+    }, [errorStore])
 
 
     const submit = (e) => {
@@ -58,33 +58,39 @@ function ReviewEditFormModal() {
                         dispatch(processError(data))
                     }
                 })
-            };
+        };
     }
     return (
-        <div>
+        // <div>
 
             <form className="modal-content" onSubmit={submit}>
-            <div>Edit this spot</div>
-                    <input className="create-form-elements modal-content-2"
-                        type="text"
-                        value={review}
-                        onChange={(e) => setReview(e.target.value)}
-                        // required
-                        placeholder="Review"
-                    />
+                <div className="modal-content-2 modal-header">Edit Your Review</div>
+                <input className="create-form-elements modal-content-2"
+                    type="text"
+                    value={review}
+                    onChange={(e) => setReview(e.target.value)}
+                    // required
+                    placeholder="Review"
+                />
 
-                    <input className="create-form-elements modal-content-2"
-                        type="number"
-                        value={stars}
-                        onChange={(e) => setStars(e.target.value)}
-                        // required
-                        placeholder="Stars"
-                    />
-                    <button className="modal-content-2" type="reset" onClick={() => reset()}>Reset</button>
-                    <button className="modal-content-2" type="submit">Submit</button>
+                <input className="create-form-elements modal-content-2"
+                    type="number"
+                    value={stars}
+                    onChange={(e) => setStars(e.target.value)}
+                    // required
+                    placeholder="Stars"
+                />
+                <br></br>
+                <br></br>
+                <br></br>
+                <br></br>
+                <br></br>
+                <br></br>
+                <button className="modal-content-2 button-style" type="reset" onClick={() => reset()}>Reset</button>
+                <button className="modal-content-2 button-style" type="submit">Submit</button>
                 {/* </div> */}
             </form>
-        </div>
+        // </div>
     );
 
 }

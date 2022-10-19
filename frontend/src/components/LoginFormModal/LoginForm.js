@@ -55,11 +55,7 @@ function LoginForm() {
 
   return (
     <form className="modal-content" onSubmit={handleSubmit}>
-      {/* <ul>
-        {errors.map((error, idx) => (
-          <li key={idx}>{error}</li>
-        ))}
-      </ul> */}
+      <div className="modal-content-2 modal-header">LOGIN</div>
       <input className="modal-content-2"
         type="text"
         value={credential}
@@ -75,9 +71,14 @@ function LoginForm() {
         // required
         placeholder="Password"
       />
-      <button className="modal-content-2" type="submit">Log In</button>
-
-      <button className="modal-content-2" onClick={() => demoLogin()}>Demo Login</button>
+      <br></br>
+      <br></br>
+      <br></br>
+      <br></br>
+      <br></br>
+      <br></br>
+      <button className="modal-content-2 button-style" type="submit">Log In</button>
+      <button className="modal-content-2 button-style" onClick={() => demoLogin()}>CLICK THIS DEMO LOGIN BUTTON TO LOG IN INSTANTLY</button>
     </form>
   );
 }

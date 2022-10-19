@@ -17,13 +17,14 @@ const SingleSpot = () => {
     const dispatch = useDispatch()
     const history = useHistory()
     const { setModalType } = useContext(ModalContext)
-
-
+    // const reviews = useSelector(state => state.review.userReviews)
+    let test = spot?.avgRating
 
 
     useEffect(() => {
+        console.log("USE EFFECT RUNNING")
         dispatch(getSingleSpot(spotId))
-    }, [])
+    }, [spotId, test])
 
     if (!spot) return null
 
@@ -33,7 +34,9 @@ const SingleSpot = () => {
         }
     }
 
-
+    const starsValue = (stars) => {
+        return stars === null ? false : true
+    }
 
 
 
@@ -41,29 +44,71 @@ const SingleSpot = () => {
     return (
         <>
             <div id="single-spot-container">
-                {sessionUser && sessionUser.id === spot.ownerId && (
-                    <>
-                        <button onClick={() => setModalType("Edit")}>Edit</button>
-                        <button onClick={deleteSpotButton}>Delete</button>
-                    </>
-                )}
-                <div>id: {spot.id}</div>
-                <div>address: {spot.address}</div>
-                <div>city: {spot.city}</div>
-                <div>state: {spot.state}</div>
-                <div>country: {spot.country}</div>
-                <div>name: {spot.name}</div>
-                <div>description: {spot.description}</div>
-                <div>avgRating: {spot.avgRating}</div>
+                <div id="spot-header">
+                    <div id="spot-header-upper">
+                        <div>name: {spot.name}</div>
+                    </div>
+                    <div id="spot-header-lower">
+                        <div id="spot-header-lower-2">
+                            {starsValue(spot.avgRating) && (
+                                <div>⭐ {spot.avgRating}</div>
+                            )}
+                            {!starsValue(spot.avgRating) && (
+                                <div>⭐ No Reviews</div>
+                            )}
+                            <div className="spacer"></div>
+                            <div id="location">{`${spot.address}, ${spot.city}, ${spot.state}, ${spot.country}`}</div>
+                        </div>
+                        <div id="info">spot id: {spot.id}
+                                <div className="spacer"></div>
+                            <div>
+                                {sessionUser && sessionUser.id === spot.ownerId && (
+                                    <>
+                                        <button onClick={() => setModalType("Edit")}>Edit</button>
+                                        <button onClick={deleteSpotButton}>Delete</button>
+                                    </>
+                                )}
+                            </div>
+                        </div>
+                    </div>
+
+                </div>
+
+
+                <div id="images">
+                    <img id="main-image" src={spot?.SpotImages?.[0]?.url} />
+                    <div id="other-images">
+                        <img src="https://2.img-dpreview.com/files/p/E~C1000x0S4000x4000T1200x1200~articles/3925134721/0266554465.jpeg" />
+                        <img src="https://images.unsplash.com/photo-1494059980473-813e73ee784b?ixlib=rb-4.0.3&ixid=MnwxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8&auto=format&fit=crop&w=1169&q=80" />
+                        <img src="https://images.unsplash.com/photo-1497034825429-c343d7c6a68f?ixlib=rb-4.0.3&ixid=MnwxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8&auto=format&fit=crop&w=687&q=80" />
+                        <img src="https://images.unsplash.com/photo-1618570364947-710d2c120d8c?ixlib=rb-4.0.3&ixid=MnwxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8&auto=format&fit=crop&w=687&q=80" />
+                    </div>
+                </div>
+
+                <div id="info-bookings">
+                    <div id="spot-info">
+                        <div className="bold h2">Entire place hosted by {spot?.Owner?.firstName}</div>
+                        <div className="top-bot-margin grey h4">Free cancellation for 48 hours.</div>
+                        <div className="top-bot-margin grey h4">Every booking includes free protection from Host cancellations, listing inaccuracies, and other issues like trouble checking in.</div>
+
+                        <div>description: {spot.description} Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat. Duis aute irure dolor in reprehenderit in voluptate velit esse cillum dolore eu fugiat nulla pariatur. Excepteur sint occaecat cupidatat non proident, sunt in culpa qui officia deserunt mollit anim id est laborum. </div>
+                    </div>
+                    <div id="bookings">SPOT RESERVED FOR BOOKING FEATURE</div>
+                </div>
+                <div id="review-section-header">
+
+                    <h1>Reviews</h1>
+                    {sessionUser && spot.ownerId !== sessionUser.id && (
+                        <button id="review-button" onClick={() => {
+                            setModalType("CreateReview")
+                        }}>Leave a Review</button>
+                    )}
+                </div>
+                <br></br>
+                <div id="review-container">
+                    <SpotReviews spotId={spotId} />
+                </div>
             </div>
-
-
-            {sessionUser && spot.ownerId !== sessionUser.id && (
-                <button onClick={() => {
-                    setModalType("CreateReview")
-                }}>Leave a Review</button>
-            )}
-            <SpotReviews spotId={spotId} />
         </>
     )
 }

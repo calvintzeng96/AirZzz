@@ -3,6 +3,7 @@ import { useHistory } from "react-router-dom"
 import { useContext, useState } from "react"
 import { createReview, getSpotReviews } from "../../store/Review/ReviewFetch"
 import { ModalContext } from "../../context/Modal"
+import { getSingleSpot } from "../../store/Spot/SpotFetch"
 
 const ReviewForm = () => {
     const spot = useSelector(state => state.spot.singleSpot)
@@ -18,15 +19,19 @@ const ReviewForm = () => {
 
         e.preventDefault()
         const data = { review, stars }
-        dispatch(createReview(spotId, data))
+        return dispatch(createReview(spotId, data))
         .then(() => {
             alert("Review Created")
-            dispatch(getSpotReviews(spotId))
+            dispatch(getSingleSpot(spotId))
+            setModalType(null)
+            // window.location.reload(false)
         })
         .catch(() => {
             alert("You already created a review for this spot")
+            setModalType(null)
         })
-        setModalType(null)
+        // //test
+        // history.push(`/spots/${spot.id}`)
     }
 
     return (

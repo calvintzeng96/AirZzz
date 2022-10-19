@@ -49,18 +49,18 @@ function EditForm() {
 
     useEffect(() => {
         if (Object.keys(errorStore).length) {
-          let errMsg = ""
-          if (errorStore.statusCode === 400) {
-            for (let i = 0; i < errorStore.errors.length; i++) {
-              errMsg += errorStore.errors[i] + "\n"
+            let errMsg = ""
+            if (errorStore.statusCode === 400) {
+                for (let i = 0; i < errorStore.errors.length; i++) {
+                    errMsg += errorStore.errors[i] + "\n"
+                }
+            } else {
+                errMsg = errorStore.message
             }
-          } else {
-            errMsg = errorStore.message
-          }
-          alert(errMsg)
-          dispatch(clearErrorStore())
+            alert(errMsg)
+            dispatch(clearErrorStore())
         }
-      }, [errorStore])
+    }, [errorStore])
 
 
 
@@ -68,7 +68,10 @@ function EditForm() {
         e.preventDefault();
         const data = { address, city, state, country, lat, lng, name, description, price }
         return dispatch(updateSpot(spot.id, data))
-            .then(() => setModalType(null))
+            .then(() => {
+                alert("Edited")
+                setModalType(null)
+            })
             .catch(async (res) => {
                 const data = await res.json();
                 if (data) {
@@ -79,82 +82,83 @@ function EditForm() {
     };
 
     return (
-        <form className="modal-content" onSubmit={submit}>
-            <input className="create-form-elements modal-content-2"
-                type="text"
-                value={address}
-                onChange={(e) => setAddress(e.target.value)}
-                // required
-                placeholder="Address"
-            />
+            <form className="modal-content" onSubmit={submit}>
+                <div className="modal-content-2 modal-header">Edit This Place</div>
+                <input className="create-form-elements modal-content-2"
+                    type="text"
+                    value={address}
+                    onChange={(e) => setAddress(e.target.value)}
+                    // required
+                    placeholder="Address"
+                />
 
-            <input className="create-form-elements modal-content-2"
-                type="text"
-                value={city}
-                onChange={(e) => setCity(e.target.value)}
-                // required
-                placeholder="City"
-            />
+                <input className="create-form-elements modal-content-2"
+                    type="text"
+                    value={city}
+                    onChange={(e) => setCity(e.target.value)}
+                    // required
+                    placeholder="City"
+                />
 
-            <input className="create-form-elements modal-content-2"
-                type="text"
-                value={state}
-                onChange={(e) => setState(e.target.value)}
-                // required
-                placeholder="State"
-            />
+                <input className="create-form-elements modal-content-2"
+                    type="text"
+                    value={state}
+                    onChange={(e) => setState(e.target.value)}
+                    // required
+                    placeholder="State"
+                />
 
-            <input className="create-form-elements modal-content-2"
-                type="text"
-                value={country}
-                onChange={(e) => setCountry(e.target.value)}
-                // required
-                placeholder="Country"
-            />
+                <input className="create-form-elements modal-content-2"
+                    type="text"
+                    value={country}
+                    onChange={(e) => setCountry(e.target.value)}
+                    // required
+                    placeholder="Country"
+                />
 
-            <input className="create-form-elements modal-content-2"
-                type="lat"
-                value={lat}
-                onChange={(e) => setLat(e.target.value)}
-                // required
-                placeholder="Latitude"
-            />
+                <input className="create-form-elements modal-content-2"
+                    type="lat"
+                    value={lat}
+                    onChange={(e) => setLat(e.target.value)}
+                    // required
+                    placeholder="Latitude"
+                />
 
-            <input className="create-form-elements modal-content-2"
-                type="long"
-                value={lng}
-                onChange={(e) => setLng(e.target.value)}
-                // required
-                placeholder="Longitude"
-            />
+                <input className="create-form-elements modal-content-2"
+                    type="long"
+                    value={lng}
+                    onChange={(e) => setLng(e.target.value)}
+                    // required
+                    placeholder="Longitude"
+                />
 
-            <input className="create-form-elements modal-content-2"
-                type="text"
-                value={name}
-                onChange={(e) => setName(e.target.value)}
-                // required
-                placeholder="Name"
-            />
+                <input className="create-form-elements modal-content-2"
+                    type="text"
+                    value={name}
+                    onChange={(e) => setName(e.target.value)}
+                    // required
+                    placeholder="Name"
+                />
 
-            <input className="create-form-elements modal-content-2"
-                type="text"
-                value={description}
-                onChange={(e) => setDescription(e.target.value)}
-                // required
-                placeholder="Description"
-            />
+                <input className="create-form-elements modal-content-2"
+                    type="text"
+                    value={description}
+                    onChange={(e) => setDescription(e.target.value)}
+                    // required
+                    placeholder="Description"
+                />
 
-            <input className="create-form-elements modal-content-2"
-                type="text"
-                value={price}
-                onChange={(e) => setPrice(e.target.value)}
-                // required
-                placeholder="Price"
-            />
-            <button className="modal-content-2" type="reset" onClick={() => reset()}>Reset</button>
-            <button className="modal-content-2" type="submit">Submit</button>
-            {/* </div> */}
-        </form>
+                <input className="create-form-elements modal-content-2"
+                    type="text"
+                    value={price}
+                    onChange={(e) => setPrice(e.target.value)}
+                    // required
+                    placeholder="Price"
+                />
+                <button className="modal-content-2 button-style" type="reset" onClick={() => reset()}>Reset</button>
+                <button className="modal-content-2 button-style" type="submit">Submit</button>
+                {/* </div> */}
+            </form>
     );
 }
 
@@ -163,10 +167,10 @@ export default EditForm;
 
 
 // {
-//     "address": "123 Disney Lane",
-//     "city": "San Francisco",
-//     "state": "California",
-//     "country": "United States of America",
+    //     "address": "123 Disney Lane",
+    //     "city": "San Francisco",
+    //     "state": "California",
+    //     "country": "United States of America",
 //     "lat": 37.7645358,
 //     "lng": -122.4730327,
 //     "name": "App Academy",

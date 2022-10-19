@@ -2,6 +2,7 @@ import { useEffect } from "react"
 import { useDispatch, useSelector } from "react-redux"
 import { useHistory } from "react-router-dom"
 import { getAllSpots } from "../../store/Spot/SpotFetch"
+// import { getSingleSpot } from "../../store/Spot/SpotFetch"
 
 const AllSpots = () => {
     const history = useHistory()
@@ -16,6 +17,7 @@ const AllSpots = () => {
     }, [])
 
     const redirectSingleSpot = (spotId) => {
+        // dispatch(getSingleSpot(spotId))
         history.push(`/spots/${spotId}`)
     }
 

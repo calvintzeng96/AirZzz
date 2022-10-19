@@ -1,0 +1,42 @@
+#spot-review-container {
+    width: 1000px;
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+    grid-template-rows: auto;
+}
+
+#single-review {
+    margin: 0;
+    padding: 0;
+    width: 480px;
+    border: 1px solid lightgrey;
+    border-radius: 12px;
+    align-self: center;
+}
+
+#review-profile {
+    display: grid;
+    grid-template-columns: 1fr 8fr 1fr;
+    grid-template-rows: 1fr 1fr;
+}
+
+#review-icon {
+    grid-column: 1/2;
+    grid-row: 1/3;
+}
+
+#review-name {
+    grid-column: 2/3;
+    grid-row: 1/2;
+}
+
+#review-date {
+    grid-column: 2/3;
+    grid-row: 2/3;
+}
+
+#review-star {
+    text-align: right;
+    grid-column: 3/4;
+    grid-row: 1/2;
+}

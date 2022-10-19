@@ -1,4 +1,121 @@
 #single-spot-container {
-    border: 1px solid purple;
-    margin: 124px 88px;
+
+    min-width: 800px;
+    width: 1200px;
+    /* border: 1px solid purple; */
+    margin: 80px auto;
+    display: flex;
+    justify-content: space-between;
+    flex-direction: column;
+}
+
+#spot-header {
+    display: flex;
+    flex-direction: column;
+    width: 100%;
+    margin: 24px 0;
+}
+
+#spot-header-upper {
+    font-size: 28px;
+    font-weight: bold;
+    width: 80%;
+}
+
+#spot-header-lower {
+    display: flex;
+    justify-content: space-between;
+}
+
+#spot-header-lower-2 {
+    display: flex;
+    width: 100%
+}
+
+#location {
+    text-decoration: underline black;
+}
+
+#info {
+    justify-content: right;
+    width: 300px;
+    display: flex;
+}
+
+.spacer {
+    width: 24px;
+}
+
+#images {
+    display: flex;
+    justify-content: space-between;
+    /* border: 1px solid red; */
+    width: 100%;
+    margin-bottom: 50px;
+}
+
+#main-image {
+    width: 600px;
+    height: 480px;
+    border-radius: 24px 0 0 24px;
+}
+
+#other-images {
+    width: 580px;
+    height: 480px;
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+    grid-template-rows: 1fr 1fr;
+    gap: 20px;
+}
+
+#other-images>img {
+    width: 280px;
+    height: 230px;
+}
+
+#other-images > img:nth-child(2) {
+    border-radius: 0 24px 0 0;
+}
+#other-images > img:nth-child(4) {
+    border-radius: 0 0 24px 0;
+}
+
+#review-section-header {
+    width: 1000px;
+    margin: 0px auto;
+}
+
+
+
+
+#review-button {
+    background-color: pink;
+    width: 240px;
+    color: white;
+    font-size: 120%;
+    font-weight: 800;
+    cursor: pointer;
+}
+
+
+#info-bookings {
+    display: flex
+}
+
+#spot-info {
+width: 700px
+}
+
+#bookings {
+    background-color: yellow;
+    width: 400px;
+    height: 600px;
+    margin-left: 100px;
+}
+
+#review-container {
+    width: 100%;
+    display: flex;
+    justify-content: center;
 }

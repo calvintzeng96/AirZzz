@@ -61,6 +61,7 @@ function SignupForm() {
 
     return (
         <form className="modal-content" onSubmit={handleSubmit}>
+            <div className="modal-content-2 modal-header">SIGN UP</div>
             <input className="modal-content-2"
                 type="text"
                 value={username}
@@ -105,7 +106,7 @@ function SignupForm() {
                 placeholder="Confirm Password"
 
             />
-            <button className="modal-content-2" type="submit">Sign Up</button>
+            <button className="modal-content-2 button-style" type="submit">Sign Up</button>
         </form>
     );
 }

@@ -17,6 +17,7 @@ export const spotReducer = (state = initialState, action) => {
 
         case GET_SINGLE_SPOT:
             const spot = { ...state, singleSpot: action.spot }
+            console.log("-----------------", spot)
             return { ...spot }
 
         case GET_MY_SPOTS:

@@ -63,12 +63,15 @@ const CreateSpot = () => {
         if (!error.length) {
             dispatch(createSpot(data))
                 .then((res) => {
-                    dispatch(addImage(imageData, res.id))
+                    console.log("---then1")
+                    dispatch(addImage(imageData, res.id)).then(() => {
+                        console.log("---then2")
+                        history.push("/profile")
+                        alert("New Spot Created")
+                    })
                 })
-                .then(() => {
-                    history.push("/profile")
-                    alert("New Spot Created")
-                }).catch(() => {
+                .catch((err) => {
+                    console.log(err)
                     alert("This spot already exists")
                 })
         } else {

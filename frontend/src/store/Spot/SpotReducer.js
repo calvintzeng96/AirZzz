@@ -48,8 +48,10 @@ export const spotReducer = (state = initialState, action) => {
             return {...deleteSpot}
 
         case NEW_SPOT_IMAGE:
-            const spotImage = {...state, allSpots: {...state.allSpots}, singleSpot: {...state.singleSpot}}
-            spotImage.allSpots[action.spotId].previewImage = action.image
+            console.log(action.image)
+            console.log("---------", action.spot)
+            const spotImage = {...state, allSpots: {...state.allSpots, [action.spot.id]: {...action.spot}}, singleSpot: {...state.singleSpot}}
+            spotImage.allSpots[action.spot.id].previewImage = action.spot.url
             return spotImage
         default:
             return state

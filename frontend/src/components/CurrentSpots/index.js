@@ -10,8 +10,6 @@ const CurrentSpots = () => {
     const spots = useSelector(state => state.spot.allSpots)
 
     let spotsArray = Object.values(spots)
-    console.log(spotsArray)
-    console.log(spotsArray[0].previewImage)
     const dispatch = useDispatch()
 
     useEffect(() => {

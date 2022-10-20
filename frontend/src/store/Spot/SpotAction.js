@@ -51,10 +51,10 @@ export const destroySpot = (spotId) => {
     }
 }
 
-export const newSpotImage = (image, spotId) => {
+export const newSpotImage = (image, spot) => {
     return {
         type: NEW_SPOT_IMAGE,
         image,
-        spotId
+        spot
     }
 }

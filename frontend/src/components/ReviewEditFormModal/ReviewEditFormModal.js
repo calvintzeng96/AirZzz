@@ -53,8 +53,7 @@ function ReviewEditFormModal() {
                 })
                 .catch(async (res) => {
                     const data = await res.json();
-                    console.log(data)
-                    if (data) {
+                     if (data) {
                         dispatch(processError(data))
                     }
                 })

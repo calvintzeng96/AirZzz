@@ -36,7 +36,6 @@ function LoginForm() {
     return dispatch(sessionActions.login({ credential, password })).then(() => setModalType(null)).catch(
       async (res) => {
         const data = await res.json();
-        console.log(data)
         if (data) {
           dispatch(processError(data))
         }

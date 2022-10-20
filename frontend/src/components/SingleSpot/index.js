@@ -22,7 +22,6 @@ const SingleSpot = () => {
 
 
     useEffect(() => {
-        console.log("USE EFFECT RUNNING")
         dispatch(getSingleSpot(spotId))
     }, [spotId, test])
 

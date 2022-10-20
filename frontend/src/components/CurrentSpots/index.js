@@ -7,11 +7,11 @@ import { Redirect } from "react-router-dom"
 const CurrentSpots = () => {
     const sessionUser = useSelector(state => state.session.user);
     const history = useHistory()
-    const spots = useSelector(state => {
-        return state.spot.allSpots
-    })
+    const spots = useSelector(state => state.spot.allSpots)
 
     let spotsArray = Object.values(spots)
+    console.log(spotsArray)
+    console.log(spotsArray[0].previewImage)
     const dispatch = useDispatch()
 
     useEffect(() => {
@@ -29,8 +29,6 @@ const CurrentSpots = () => {
     }
 
     if (!sessionUser) return <Redirect to="/" />
-    // console.log("-------------", spotsArray)
-    // console.log("-------------", spotsArray.length)
     if (!spotsArray.length) {
         return (
             <>
@@ -39,7 +37,6 @@ const CurrentSpots = () => {
             </>
         )
     } else {
-
         return (
             <>
                 <h1 className="top-margin">MY SPOTS</h1>
@@ -48,7 +45,7 @@ const CurrentSpots = () => {
                         spotsArray.map(ele =>
                         (<div className="card-box" key={ele.id} onClick={() => redirectSingleSpot(ele.id)}>
                             <img src={ele.previewImage} className="preview-image" />
-                            {/* {console.log(ele.previewImage)} */}
+
                             <div id="card-bottom">
 
                                 <div id="spot-stars-card">
@@ -68,8 +65,6 @@ const CurrentSpots = () => {
                             </div>
                         </div>)
                         )
-
-
                     }
                 </div>
             </>

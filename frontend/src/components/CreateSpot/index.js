@@ -63,7 +63,7 @@ const CreateSpot = () => {
         if (!error.length) {
             dispatch(createSpot(data))
                 .then((res) => {
-                    dispatch(addImage(imageData, res.id))
+                    return dispatch(addImage(imageData, res.id))
                 })
                 .then(() => {
                     history.push("/profile")

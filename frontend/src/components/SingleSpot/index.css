@@ -1,5 +1,4 @@
 #single-spot-container {
-
     min-width: 800px;
     width: 1200px;
     /* border: 1px solid purple; */
@@ -114,8 +113,8 @@ width: 700px
     margin-left: 100px;
 }
 
-#review-container {
+/* #review-container {
     width: 100%;
     display: flex;
     justify-content: center;
-}
+} */

@@ -15,7 +15,7 @@ const Profile = () => {
         <>
             <h1 className="top-margin">{`Hello ${firstName} ${lastName}`}</h1>
             <CurrentSpot />
-            <div>Manage Reviews</div>
+
             <MyReviews />
         </>
     )

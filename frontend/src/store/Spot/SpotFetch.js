@@ -70,3 +70,16 @@ export const deleteSpot = (spotId) => async (dispatch) => {
         dispatch(Actions.destroySpot(spotId))
     }
 }
+
+export const addImage = (image, spotId) => async (dispatch) => {
+    const res = await csrfFetch(`/api/spots/${spotId}/images`, {
+        method: "POST",
+        headers: {"Content-Type": "application/json"},
+        body: JSON.stringify(image)
+    })
+
+    if (res.ok) {
+        const image = await res.json()
+        dispatch(Actions.newSpotImage(spotId, image))
+    }
+}

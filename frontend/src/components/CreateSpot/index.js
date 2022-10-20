@@ -1,5 +1,5 @@
 import React, { useState } from "react";
-import { createSpot } from "../../store/Spot/SpotFetch";
+import { addImage, createSpot } from "../../store/Spot/SpotFetch";
 import { useDispatch } from "react-redux";
 import { useHistory } from "react-router-dom";
 import "./index.css"
@@ -15,6 +15,7 @@ const CreateSpot = () => {
     const [name, setName] = useState("");
     const [description, setDescription] = useState("");
     const [price, setPrice] = useState("");
+    const [image, setImage] = useState("")
     const history = useHistory()
 
 
@@ -28,6 +29,7 @@ const CreateSpot = () => {
         setName("")
         setDescription("")
         setPrice("")
+        setImage("")
     }
 
 
@@ -36,6 +38,11 @@ const CreateSpot = () => {
     const submit = (e) => {
         e.preventDefault();
         const data = { address, city, state, country, lat, lng, name, description, price }
+        const imageData = {
+            url: image,
+            preview: true
+        }
+
         let error = []
         //front end err check
         if (address.length === 0) error.push("address required")
@@ -50,10 +57,14 @@ const CreateSpot = () => {
         if (name.length > 50) error.push("name needs to be 50 characters or less")
         if (description.length === 0) error.push("description required")
         if (price.length === 0) error.push("price required")
+        if (image.length === 0) error.push("image required")
         //--------------
 
         if (!error.length) {
             dispatch(createSpot(data))
+                .then((res) => {
+                    dispatch(addImage(imageData, res.id))
+                })
                 .then(() => {
                     history.push("/profile")
                     alert("New Spot Created")
@@ -138,12 +149,20 @@ const CreateSpot = () => {
                     placeholder="Description"
                 />
 
-                <input className="input-elements bot-element"
+                <input className="input-elements"
                     type="number"
                     value={price}
                     onChange={(e) => setPrice(e.target.value)}
                     // required
                     placeholder="Price"
+                />
+
+                <input className="input-elements bot-element"
+                    type="text"
+                    value={image}
+                    onChange={(e) => setImage(e.target.value)}
+                    // required
+                    placeholder="Main Image URL"
                 />
                 <button id="create-spot-reset" className="create-spot-buttons" type="reset" onClick={() => reset()}>Reset</button>
                 <button id="create-spot-submit" className="create-spot-buttons" type="submit">Submit</button>

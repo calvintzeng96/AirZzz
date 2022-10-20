@@ -29,40 +29,52 @@ const CurrentSpots = () => {
     }
 
     if (!sessionUser) return <Redirect to="/" />
-    return (
-        <>
-            <h1 className="top-margin">ALL MY SPOTS</h1>
-            <div id="all-spots-container">
-                {
-                    spotsArray.map(ele =>
-                    (<div className="card-box" key={ele.id} onClick={() => redirectSingleSpot(ele.id)}>
-                        <img src={ele.previewImage} className="preview-image" />
-                        {/* {console.log(ele.previewImage)} */}
-                        <div id="card-bottom">
+    // console.log("-------------", spotsArray)
+    // console.log("-------------", spotsArray.length)
+    if (!spotsArray.length) {
+        return (
+            <>
+                <h1 className="top-margin">MY SPOTS</h1>
+                <div className="center margin-bottom">You currently have no spots</div>
+            </>
+        )
+    } else {
 
-                            <div id="spot-stars-card">
-                                {starsValue(ele.avgRating) && (
-                                    <div>⭐ {ele.avgRating}</div>
-                                )}
-                                {!starsValue(ele.avgRating) && (
-                                    <div>⭐ New</div>
-                                )}
+        return (
+            <>
+                <h1 className="top-margin">MY SPOTS</h1>
+                <div id="all-spots-container">
+                    {
+                        spotsArray.map(ele =>
+                        (<div className="card-box" key={ele.id} onClick={() => redirectSingleSpot(ele.id)}>
+                            <img src={ele.previewImage} className="preview-image" />
+                            {/* {console.log(ele.previewImage)} */}
+                            <div id="card-bottom">
+
+                                <div id="spot-stars-card">
+                                    {starsValue(ele.avgRating) && (
+                                        <div>⭐ {ele.avgRating}</div>
+                                    )}
+                                    {!starsValue(ele.avgRating) && (
+                                        <div>⭐ New</div>
+                                    )}
+                                </div>
+                                <div id="country">{ele.country}</div>
+                                <div id="city-state" className="bold">{ele.city}, {ele.state}</div>
+                                <div id="description-card" className="grey">{ele.description}</div>
+
+                                <div id="spot-price"><span className="bold">${ele.price}</span> /night</div>
+
                             </div>
-                            <div id="country">{ele.country}</div>
-                            <div id="city-state" className="bold">{ele.city}, {ele.state}</div>
-                            <div id="description-card" className="grey">{ele.description}</div>
-
-                            <div id="spot-price"><span className="bold">${ele.price}</span> /night</div>
-
-                        </div>
-                    </div>)
-                    )
+                        </div>)
+                        )
 
 
-                }
-            </div>
-        </>
-    )
+                    }
+                </div>
+            </>
+        )
+    }
 }
 
 

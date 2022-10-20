@@ -25,6 +25,8 @@ const ReviewForm = () => {
             dispatch(getSingleSpot(spotId))
             setModalType(null)
             // window.location.reload(false)
+        }).then(() => {
+            dispatch(getSpotReviews(spotId))
         })
         .catch(() => {
             alert("You already created a review for this spot")

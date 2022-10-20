@@ -126,3 +126,7 @@
 .border-box {
     border: 1px solid brown
 }
+
+.center {
+    text-align: center;
+}

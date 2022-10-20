@@ -1,4 +1,4 @@
-import { DESTROY_SPOT, EDIT_SPOT, GET_ALL_SPOTS, GET_MY_SPOTS, GET_SINGLE_SPOT, NEW_SPOT } from "./SpotAction";
+import { DESTROY_SPOT, EDIT_SPOT, GET_ALL_SPOTS, GET_MY_SPOTS, GET_SINGLE_SPOT, NEW_SPOT, NEW_SPOT_IMAGE } from "./SpotAction";
 
 
 let initialState = {
@@ -17,7 +17,6 @@ export const spotReducer = (state = initialState, action) => {
 
         case GET_SINGLE_SPOT:
             const spot = { ...state, singleSpot: action.spot }
-            console.log("-----------------", spot)
             return { ...spot }
 
         case GET_MY_SPOTS:
@@ -48,8 +47,10 @@ export const spotReducer = (state = initialState, action) => {
             delete deleteSpot.allSpots[action.spotId]
             return {...deleteSpot}
 
-        // case NEW_SPOT_IMAGE:
-
+        case NEW_SPOT_IMAGE:
+            const spotImage = {...state, allSpots: {...state.allSpots}, singleSpot: {...state.singleSpot}}
+            spotImage.allSpots[action.spotId].previewImage = action.image
+            return spotImage
         default:
             return state
     }

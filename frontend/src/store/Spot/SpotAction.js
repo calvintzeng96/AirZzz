@@ -5,7 +5,7 @@ export const GET_MY_SPOTS = "spots/GET_MY_SPOTS"
 export const NEW_SPOT = "spots/NEW_SPOT"
 export const EDIT_SPOT = "spots/EDIT_SPOT"
 export const DESTROY_SPOT = "spots/DESTROY_SPOT"
-// export const NEW_SPOT_IMAGE = "spots/NEW_SPOT_IMAGE"
+export const NEW_SPOT_IMAGE = "spots/NEW_SPOT_IMAGE"
 
 
 
@@ -51,9 +51,10 @@ export const destroySpot = (spotId) => {
     }
 }
 
-// export const newSpotImage = (image) => {
-//     return {
-//         type: NEW_SPOT_IMAGE,
-//         image
-//     }
-// }
+export const newSpotImage = (image, spotId) => {
+    return {
+        type: NEW_SPOT_IMAGE,
+        image,
+        spotId
+    }
+}

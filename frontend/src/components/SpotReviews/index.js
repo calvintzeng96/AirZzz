@@ -22,11 +22,10 @@ const SpotReviews = (props) => {
                     return (
                         <div id="single-review" key={ele.id}>
                             <div id="review-profile">
-
                                 <i id="review-icon" className="fas fa-user-circle" />
                                 {ele.User && (
-                                    <div id="review-name">{ele.User.firstName}</div>
-
+                                    // <div id="review-name">{ele?.User?.firstName}</div>
+                                    <div id="review-name">{ele?.User?.firstName}</div>
                                 )}
                                 <div id="review-date">Sample Date</div>
                                 <div id="review-star">{ele.stars} ⭐</div>
@@ -37,7 +36,6 @@ const SpotReviews = (props) => {
                     )
                 })
             }
-
         </div>
     )
 }

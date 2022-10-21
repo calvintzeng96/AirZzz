@@ -1,17 +1,3 @@
-/* #modal-container {
-  position: fixed;
-  top: 0;
-  right: 0;
-  left: 0;
-  bottom: 0;
-  display: flex;
-  flex-direction: column;
-  justify-content: center;
-  align-items: center;
-} */
-
-
-
 .modal {
   position: fixed;
   top: 0;
@@ -22,8 +8,6 @@
   flex-direction: column;
   justify-content: center;
   align-items: center;
-  /* width: 800px;
-  height: 800px */
 }
 
 .modal-background {
@@ -33,12 +17,9 @@
   left: 0;
   bottom: 0;
   background-color: rgba(0, 0, 0, 0.7);
-  /* z-index: 12; */
-  border: 3px solid red
 }
 
 .modal-content {
-  /* border: 4px solid orange; */
   background-color: lightcyan;
   position: absolute;
   z-index: 3;

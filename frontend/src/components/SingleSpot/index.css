@@ -1,7 +1,6 @@
 #single-spot-container {
     min-width: 800px;
     width: 1200px;
-    /* border: 1px solid purple; */
     margin: 80px auto;
     display: flex;
     justify-content: space-between;
@@ -57,7 +56,6 @@
 #images {
     display: flex;
     justify-content: space-between;
-    /* border: 1px solid red; */
     width: 100%;
     margin-bottom: 50px;
 }

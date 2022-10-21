@@ -91,6 +91,7 @@ app.use((err, _req, _res, next) => {
 // //SequelizeUniqueConstraintError
 app.use((err, _req, _res, next) => {
     if (err instanceof UniqueConstraintError) {
+        console.log("----------something")
         err.title = "Unique Validation Failed"
         err.message = ["User with that email already exists"]
         err.status = 403

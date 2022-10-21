@@ -50,7 +50,8 @@ const validateCreateSpot = [
     .withMessage("Description is required"),
   check("price")
     .exists({ checkFalsy: true })
-    .withMessage("Price per day is required"),
+    .custom(val => val > 1)
+    .withMessage("Price can not be less than $1"),
   handleValidationErrors
 ];
 

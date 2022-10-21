@@ -49,15 +49,16 @@ function EditForm() {
 
     useEffect(() => {
         if (Object.keys(errorStore).length) {
-            let errMsg = ""
+            let err = []
             if (errorStore.statusCode === 400) {
                 for (let i = 0; i < errorStore.errors.length; i++) {
-                    errMsg += errorStore.errors[i] + "\n"
+                    err.push(errorStore.errors[i])
                 }
             } else {
-                errMsg = errorStore.message
+                err.push(errorStore.message)
             }
-            alert(errMsg)
+            // alert(err)
+            setErrors(err)
             dispatch(clearErrorStore())
         }
     }, [errorStore])
@@ -84,11 +85,14 @@ function EditForm() {
     return (
             <form className="modal-content" onSubmit={submit}>
                 <div className="modal-content-2 modal-header">Edit This Place</div>
+                {errors.length > 0 && (
+    errors.map(ele => <div className="error-list">{ele}</div>)
+)}
                 <input className="create-form-elements modal-content-2"
                     type="text"
                     value={address}
                     onChange={(e) => setAddress(e.target.value)}
-                    // required
+                    required
                     placeholder="Address"
                 />
 
@@ -96,7 +100,7 @@ function EditForm() {
                     type="text"
                     value={city}
                     onChange={(e) => setCity(e.target.value)}
-                    // required
+                    required
                     placeholder="City"
                 />
 
@@ -104,7 +108,7 @@ function EditForm() {
                     type="text"
                     value={state}
                     onChange={(e) => setState(e.target.value)}
-                    // required
+                    required
                     placeholder="State"
                 />
 
@@ -112,7 +116,7 @@ function EditForm() {
                     type="text"
                     value={country}
                     onChange={(e) => setCountry(e.target.value)}
-                    // required
+                    required
                     placeholder="Country"
                 />
 
@@ -120,7 +124,7 @@ function EditForm() {
                     type="lat"
                     value={lat}
                     onChange={(e) => setLat(e.target.value)}
-                    // required
+                    required
                     placeholder="Latitude"
                 />
 
@@ -128,7 +132,7 @@ function EditForm() {
                     type="long"
                     value={lng}
                     onChange={(e) => setLng(e.target.value)}
-                    // required
+                    required
                     placeholder="Longitude"
                 />
 
@@ -136,7 +140,7 @@ function EditForm() {
                     type="text"
                     value={name}
                     onChange={(e) => setName(e.target.value)}
-                    // required
+                    required
                     placeholder="Name"
                 />
 
@@ -144,7 +148,7 @@ function EditForm() {
                     type="text"
                     value={description}
                     onChange={(e) => setDescription(e.target.value)}
-                    // required
+                    required
                     placeholder="Description"
                 />
 
@@ -152,7 +156,7 @@ function EditForm() {
                     type="text"
                     value={price}
                     onChange={(e) => setPrice(e.target.value)}
-                    // required
+                    required
                     placeholder="Price"
                 />
                 <button className="modal-content-2 button-style" type="reset" onClick={() => reset()}>Reset</button>

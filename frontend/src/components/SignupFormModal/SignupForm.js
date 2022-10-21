@@ -21,22 +21,21 @@ function SignupForm() {
         //using hashmap to make sure no repeat error msg
         //terrible backend design
         if (Object.keys(errorStore).length) {
-            let errMsg = ""
+            let err = []
             if (errorStore.statusCode === 400) {
                 let set = new Set()
                 for (let i = 0; i < errorStore.errors.length; i++) {
                     if (set.has(errorStore.errors[i])) continue
                     set.add(errorStore.errors[i])
-                    errMsg += errorStore.errors[i] + "\n"
+                    err.push(errorStore.errors[i])
                 }
             } else {
-                errMsg = errorStore.message
+                err.push(errorStore.message)
             }
-            alert(errMsg)
+            setErrors(err)
             dispatch(clearErrorStore())
         }
     }, [errorStore])
-
 
 
     const handleSubmit = (e) => {
@@ -55,18 +54,21 @@ function SignupForm() {
                     }
                 });
         } else {
-            alert("Confirm Password field must be the same as the Password field")
+            setErrors(["Passwords do not match"])
         }
     };
 
     return (
         <form className="modal-content" onSubmit={handleSubmit}>
             <div className="modal-content-2 modal-header">SIGN UP</div>
+            {errors.length > 0 && (
+                errors.map(ele => <div className="error-list">{ele}</div>)
+            )}
             <input className="modal-content-2"
                 type="text"
                 value={username}
                 onChange={(e) => setUsername(e.target.value)}
-                // required
+                required
                 placeholder="Username"
 
             />
@@ -74,35 +76,35 @@ function SignupForm() {
                 type="text"
                 value={firstName}
                 onChange={(e) => setFirstName(e.target.value)}
-                // required
+                required
                 placeholder="First Name"
             />
             <input className="modal-content-2"
                 type="text"
                 value={lastName}
                 onChange={(e) => setLastName(e.target.value)}
-                // required
+                required
                 placeholder="Last Name"
             />
             <input className="modal-content-2"
                 type="text"
                 value={email}
                 onChange={(e) => setEmail(e.target.value)}
-                // required
+                required
                 placeholder="Email"
             />
             <input className="modal-content-2"
                 type="password"
                 value={password}
                 onChange={(e) => setPassword(e.target.value)}
-                // required
+                required
                 placeholder="Password"
             />
             <input className="modal-content-2"
                 type="password"
                 value={confirmPassword}
                 onChange={(e) => setConfirmPassword(e.target.value)}
-                // required
+                required
                 placeholder="Confirm Password"
 
             />

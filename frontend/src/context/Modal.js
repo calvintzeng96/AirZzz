@@ -5,6 +5,7 @@ import SignupForm from '../components/SignupFormModal/SignupForm';
 import EditForm from '../components/EditFormModal/EditForm';
 import ReviewForm from "../components/ReviewForm/ReviewForm"
 import ReviewEditFormModal from "../components/ReviewEditFormModal/ReviewEditFormModal"
+import CreateSpot from '../components/CreateSpot';
 
 export const ModalContext = React.createContext();
 
@@ -46,6 +47,14 @@ export function SelectedModals() {
     return (
       <div className="modal">
         <SignupForm />
+        <div onClick={() => setModalType(null)} className="modal-background"></div>
+      </div>
+    )
+  }
+  if (modalType === "CreateSpot") {
+    return (
+      <div className="modal">
+        <CreateSpot />
         <div onClick={() => setModalType(null)} className="modal-background"></div>
       </div>
     )

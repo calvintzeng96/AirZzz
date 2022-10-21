@@ -35,10 +35,19 @@
     text-decoration: underline black;
 }
 
-#info {
-    justify-content: right;
-    width: 300px;
+#edit-delete {
+    justify-content: space-between;
+    width: 120px;
     display: flex;
+}
+
+.button {
+    background-color: pink;
+    color: white;
+    font-size: 100%;
+    font-weight: 300;
+    cursor: pointer;
+    border-radius: 12px;
 }
 
 .spacer {

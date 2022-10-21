@@ -34,15 +34,13 @@ const MyReviews = () => {
                             <div id="review-profile">
                                 <i id="review-icon" className="fas fa-user-circle" />
                                 {ele.User && (
-                                    <div id="review-name">{ele.User.firstName}</div>
+                                    <div id="review-name" className="bold">{ele?.User?.firstName} {(ele?.User?.lastName)[0]}.</div>
                                 )}
-                                <div id="review-date">Sample Date</div>
+                                <div id="review-date">{(ele.createdAt).slice(0,10)}</div>
                                 <div id="review-star">{ele.stars} ⭐</div>
-                                <div id="spotId">sID:{ele.spotId}</div>
                             </div>
                             <br></br>
-                            <div>{ele.review}</div>
-                            <div>Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat.</div>
+                            <div className="review-content">{ele.review}</div>
                             <button className="buttons" onClick={() => {
                                 setModalType("EditReview")
                                 dispatch(editReview(ele))

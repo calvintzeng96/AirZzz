@@ -1,8 +1,13 @@
-import React, { useState } from "react";
+import React, { useState, useEffect, useContext } from "react";
 import { addImage, createSpot } from "../../store/Spot/SpotFetch";
 import { useDispatch } from "react-redux";
-import { useHistory } from "react-router-dom";
+import { processError } from "../../store/Error/ErrorReducer"
+import { useSelector } from "react-redux";
+import { clearErrorStore } from "../../store/Error/ErrorReducer";
+import { ModalContext } from "../../context/Modal";
 import "./index.css"
+import { Redirect } from "react-router-dom";
+
 
 const CreateSpot = () => {
     const dispatch = useDispatch();
@@ -16,7 +21,9 @@ const CreateSpot = () => {
     const [description, setDescription] = useState("");
     const [price, setPrice] = useState("");
     const [image, setImage] = useState("")
-    const history = useHistory()
+    const errorStore = useSelector(state => state.error.errors)
+    const [errors, setErrors] = useState([])
+    const {setModalType} = useContext(ModalContext)
 
 
     const reset = () => {
@@ -32,7 +39,21 @@ const CreateSpot = () => {
         setImage("")
     }
 
-
+    useEffect(() => {
+        if (Object.keys(errorStore).length) {
+            let err = []
+            if (errorStore.statusCode === 400) {
+                for (let i = 0; i < errorStore.errors.length; i++) {
+                    err.push(errorStore.errors[i])
+                }
+            } else {
+                err.push(errorStore.message)
+            }
+            // alert(err)
+            setErrors(err)
+            dispatch(clearErrorStore())
+        }
+    }, [errorStore])
 
 
     const submit = (e) => {
@@ -43,133 +64,111 @@ const CreateSpot = () => {
             preview: true
         }
 
-        let error = []
-        //front end err check
-        if (address.length === 0) error.push("address required")
-        if (city.length === 0) error.push("city required")
-        if (state.length === 0) error.push("state required")
-        if (country.length === 0) error.push("country required")
-        if (lat.length === 0) error.push("lat required")
-        if (lat > 90 || lat < -90) error.push("latitude is not valid")
-        if (lng.length === 0) error.push("lng required")
-        if (lng > 180 || lng < -180) error.push("longitude is not valid")
-        if (name.length === 0) error.push("name required")
-        if (name.length > 50) error.push("name needs to be 50 characters or less")
-        if (description.length === 0) error.push("description required")
-        if (price.length === 0) error.push("price required")
-        if (image.length === 0) error.push("image required")
-        //--------------
-
-        if (!error.length) {
-            dispatch(createSpot(data))
-                .then((res) => {
-                    console.log("---then1")
-                    dispatch(addImage(imageData, res.id)).then(() => {
-                        console.log("---then2")
-                        history.push("/profile")
-                        alert("New Spot Created")
-                    })
-                })
-                .catch((err) => {
-                    console.log(err)
-                    alert("This spot already exists")
-                })
-        } else {
-            let test = ""
-            for (let i = 0; i < error.length; i++) {
-                test += error[i] + "\n"
+        dispatch(createSpot(data))
+        .then((res) => {
+            dispatch(addImage(imageData, res.id)).then(() => {
+                alert("New Spot Created")
+                setModalType(null)
+                window.location.reload()
+            })
+        })
+        .catch(async (res) => {
+            const data = await res.json();
+            if (data) {
+                dispatch(processError(data))
             }
-            alert(test)
-        }
+        })
     };
 
 
     return (
-        <form id="create-form-container" onSubmit={submit}>
-            <h2>Host Your Home Here</h2>
-            <div id="create-form">
-                <input className="input-elements top-element"
+        <form className="modal-content" onSubmit={submit}>
+            <div className="modal-content-2 modal-header">Host Your Home Here</div>
+                {errors.length > 0 && (
+                    errors.map(ele => <div className="error-list">{ele}</div>)
+                )}
+
+                <input className="modal-content-2"
                     type="text"
                     value={address}
                     onChange={(e) => setAddress(e.target.value)}
-                    // required
+                    required
                     placeholder="Address"
                 />
 
-                <input className="input-elements"
+                <input className="modal-content-2"
                     type="text"
                     value={city}
                     onChange={(e) => setCity(e.target.value)}
-                    // required
+                    required
                     placeholder="City"
                 />
 
-                <input className="input-elements"
+                <input className="modal-content-2"
                     type="text"
                     value={state}
                     onChange={(e) => setState(e.target.value)}
-                    // required
+                    required
                     placeholder="State"
                 />
 
-                <input className="input-elements"
+                <input className="modal-content-2"
                     type="text"
                     value={country}
                     onChange={(e) => setCountry(e.target.value)}
-                    // required
+                    required
                     placeholder="Country"
                 />
 
-                <input className="input-elements"
+                <input className="modal-content-2"
                     type="number"
                     value={lat}
                     onChange={(e) => setLat(e.target.value)}
-                    // required
+                    required
                     placeholder="Latitude"
                 />
 
-                <input className="input-elements"
+                <input className="modal-content-2"
                     type="number"
                     value={lng}
                     onChange={(e) => setLng(e.target.value)}
-                    // required
+                    required
                     placeholder="Longitude"
                 />
 
-                <input className="input-elements"
+                <input className="modal-content-2"
                     type="text"
                     value={name}
                     onChange={(e) => setName(e.target.value)}
-                    // required
+                    required
                     placeholder="Name"
                 />
 
-                <input className="input-elements"
+                <input className="modal-content-2"
                     type="text"
                     value={description}
                     onChange={(e) => setDescription(e.target.value)}
-                    // required
+                    required
                     placeholder="Description"
                 />
 
-                <input className="input-elements"
+                <input className="modal-content-2"
                     type="number"
                     value={price}
                     onChange={(e) => setPrice(e.target.value)}
-                    // required
+                    required
                     placeholder="Price"
                 />
 
-                <input className="input-elements bot-element"
+                <input className="modal-content-2"
                     type="text"
                     value={image}
                     onChange={(e) => setImage(e.target.value)}
-                    // required
+                    required
                     placeholder="Main Image URL"
                 />
-                <button id="create-spot-reset" className="create-spot-buttons" type="reset" onClick={() => reset()}>Reset</button>
-                <button id="create-spot-submit" className="create-spot-buttons" type="submit">Submit</button>
-            </div>
+                <button className="modal-content-2 button-style" type="reset" onClick={() => reset()}>Reset</button>
+                <button className="modal-content-2 button-style" type="submit">Submit</button>
         </form>
     )
 }

@@ -9,17 +9,16 @@
     font-family: system-ui
 }
 
-#footer {
+/* #footer {
     border: 1px solid black;
     position: fixed;
-    /* margin-bottom: 0px; */
     bottom: 0px;
     width: 100%;
     text-align: center;
     height: 40px;
     background-color: lightpink;
     left: 0px
-}
+} */
 
 .modal-content {
     position: absolute;
@@ -130,4 +129,13 @@
 
 .center {
     text-align: center;
+}
+
+.text-area.modal-content-2 {
+    padding: 8px;
+}
+
+.review-content {
+    word-break: break-word;
+    height: auto
 }

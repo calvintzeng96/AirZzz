@@ -1,4 +1,4 @@
-#create-form-container {
+/* #create-form-container {
     border: 1px solid green;
     margin-top: 100px;
     height: 80vh;
@@ -17,7 +17,6 @@ h2 {
     height: 80%;
     width: 40%;
     margin: 0 auto;
-    /* margin-top: 200px; */
     padding: 1em;
     border: 1px solid #CCC;
     border-radius: 1em;
@@ -55,4 +54,4 @@ h2 {
     font-size: 120%;
     font-weight: 800;
     cursor: pointer;
-}
+} */

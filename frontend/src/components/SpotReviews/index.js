@@ -25,13 +25,13 @@ const SpotReviews = (props) => {
                                 <i id="review-icon" className="fas fa-user-circle" />
                                 {ele.User && (
                                     // <div id="review-name">{ele?.User?.firstName}</div>
-                                    <div id="review-name">{ele?.User?.firstName}</div>
+                                    <div id="review-name">{ele?.User?.firstName} {(ele?.User?.lastName)[0]}.</div>
                                 )}
-                                <div id="review-date">Sample Date</div>
+                                <div id="review-date">{(ele.createdAt).slice(0,10)}</div>
                                 <div id="review-star">{ele.stars} ⭐</div>
                             </div>
                             <br></br>
-                            <div>{ele.review}</div>
+                            <div className="review-content">{ele.review}</div>
                         </div>
                     )
                 })

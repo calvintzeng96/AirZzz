@@ -54,12 +54,6 @@
     grid-row: 2/3;
 }
 
-#spotId {
-    grid-column: 3/4;
-    grid-row: 2/3;
-    text-align: right
-}
-
 #review-star {
     text-align: right;
     grid-column: 3/4;

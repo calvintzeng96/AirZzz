@@ -53,7 +53,7 @@ function ReviewEditFormModal() {
                 })
                 .catch(async (res) => {
                     const data = await res.json();
-                     if (data) {
+                    if (data) {
                         dispatch(processError(data))
                     }
                 })
@@ -62,33 +62,35 @@ function ReviewEditFormModal() {
     return (
         // <div>
 
-            <form className="modal-content" onSubmit={submit}>
-                <div className="modal-content-2 modal-header">Edit Your Review</div>
-                <input className="create-form-elements modal-content-2"
-                    type="text"
-                    value={review}
-                    onChange={(e) => setReview(e.target.value)}
-                    // required
-                    placeholder="Review"
-                />
+        <form className="modal-content" onSubmit={submit}>
+            <div className="modal-content-2 modal-header">Edit Your Review</div>
+            <input className="create-form-elements modal-content-2 text-area"
+                type="text"
+                value={review}
+                onChange={(e) => setReview(e.target.value)}
+                required
+                placeholder="Review"
+            />
 
-                <input className="create-form-elements modal-content-2"
-                    type="number"
-                    value={stars}
-                    onChange={(e) => setStars(e.target.value)}
-                    // required
-                    placeholder="Stars"
-                />
-                <br></br>
-                <br></br>
-                <br></br>
-                <br></br>
-                <br></br>
-                <br></br>
-                <button className="modal-content-2 button-style" type="reset" onClick={() => reset()}>Reset</button>
-                <button className="modal-content-2 button-style" type="submit">Submit</button>
-                {/* </div> */}
-            </form>
+            <input className="create-form-elements modal-content-2"
+                type="number"
+                min="1"
+                max="5"
+                value={stars}
+                onChange={(e) => setStars(e.target.value)}
+                required
+                placeholder="Stars"
+            />
+            <br></br>
+            <br></br>
+            <br></br>
+            <br></br>
+            <br></br>
+            <br></br>
+            <button className="modal-content-2 button-style" type="reset" onClick={() => reset()}>Reset</button>
+            <button className="modal-content-2 button-style" type="submit">Submit</button>
+            {/* </div> */}
+        </form>
         // </div>
     );
 

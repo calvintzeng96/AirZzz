@@ -11,12 +11,12 @@ function Navigation({ isLoaded }) {
   const sessionUser = useSelector(state => state.session.user);
   const { setModalType } = useContext(ModalContext)
 
-  let history = useHistory()
+  // let history = useHistory()
   //redirect to creat spot form
 
-  const goToCreateSpotForm = () => {
-    history.push("/spots")
-  }
+  // const goToCreateSpotForm = () => {
+  //   history.push("/spots")
+  // }
 
 
   let createSpotButton;
@@ -27,7 +27,9 @@ function Navigation({ isLoaded }) {
       <MenuButton user={sessionUser} />
     );
     createSpotButton = (
-      <button id="host-spot" onClick={() => goToCreateSpotForm()}>Host Your Place</button>)
+      <button id="host-spot" onClick={() => {
+        setModalType("CreateSpot")
+      }}>Host Your Place</button>)
   } else {
     sessionLinks = (
       <div>

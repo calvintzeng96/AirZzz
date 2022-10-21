@@ -58,13 +58,13 @@ const SingleSpot = () => {
                             <div className="spacer"></div>
                             <div id="location">{`${spot.address}, ${spot.city}, ${spot.state}, ${spot.country}`}</div>
                         </div>
-                        <div id="info">spot id: {spot.id}
-                                <div className="spacer"></div>
-                            <div>
+                        <div>
+                            <div className="spacer"></div>
+                            <div id="edit-delete">
                                 {sessionUser && sessionUser.id === spot.ownerId && (
                                     <>
-                                        <button onClick={() => setModalType("Edit")}>Edit</button>
-                                        <button onClick={deleteSpotButton}>Delete</button>
+                                        <button className="button" onClick={() => setModalType("Edit")}>Edit</button>
+                                        <button className="button" onClick={deleteSpotButton}>Delete</button>
                                     </>
                                 )}
                             </div>
@@ -90,7 +90,7 @@ const SingleSpot = () => {
                         <div className="top-bot-margin grey h4">Free cancellation for 48 hours.</div>
                         <div className="top-bot-margin grey h4">Every booking includes free protection from Host cancellations, listing inaccuracies, and other issues like trouble checking in.</div>
 
-                        <div>description: {spot.description} Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat. Duis aute irure dolor in reprehenderit in voluptate velit esse cillum dolore eu fugiat nulla pariatur. Excepteur sint occaecat cupidatat non proident, sunt in culpa qui officia deserunt mollit anim id est laborum. </div>
+                        <div>description: {spot.description}</div>
                     </div>
                     <div id="bookings">SPOT RESERVED FOR BOOKING FEATURE</div>
                 </div>

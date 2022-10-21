@@ -44,7 +44,7 @@ function App() {
 
           </Switch>
         )}
-        <div id="footer">Footer Holder</div>
+        {/* <div id="footer">Footer Holder</div> */}
     </>
   );
 }

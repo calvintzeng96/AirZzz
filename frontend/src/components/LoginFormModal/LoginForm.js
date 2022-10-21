@@ -16,15 +16,16 @@ function LoginForm() {
   //ERROR HANDLING POPUP
   useEffect(() => {
     if (Object.keys(errorStore).length) {
-      let errMsg = ""
+      let err = []
       if (errorStore.statusCode === 400) {
         for (let i = 0; i < errorStore.errors.length; i++) {
-          errMsg += errorStore.errors[i] + "\n"
+          err.push(errorStore.errors[i])
         }
       } else {
-        errMsg = errorStore.message
+        err.push(errorStore.message)
       }
-      alert(errMsg)
+      // alert(err)
+      setErrors(err)
       dispatch(clearErrorStore())
     }
   }, [errorStore])
@@ -33,14 +34,14 @@ function LoginForm() {
 
     e.preventDefault();
     setErrors([]);
-    return dispatch(sessionActions.login({ credential, password })).then(() => setModalType(null)).catch(
-      async (res) => {
+    return dispatch(sessionActions.login({ credential, password }))
+      .then(() => setModalType(null))
+      .catch(async (res) => {
         const data = await res.json();
         if (data) {
           dispatch(processError(data))
         }
-      }
-    );
+      })
   };
 
   const demoLogin = (e) => {
@@ -55,6 +56,9 @@ function LoginForm() {
   return (
     <form className="modal-content" onSubmit={handleSubmit}>
       <div className="modal-content-2 modal-header">LOGIN</div>
+      {errors.length > 0 && (
+        errors.map(ele => <div className="error-list">{ele}</div>)
+      )}
       <input className="modal-content-2"
         type="text"
         value={credential}
@@ -77,7 +81,7 @@ function LoginForm() {
       <br></br>
       <br></br>
       <button className="modal-content-2 button-style" type="submit">Log In</button>
-      <button className="modal-content-2 button-style" onClick={() => demoLogin()}>CLICK THIS DEMO LOGIN BUTTON TO LOG IN INSTANTLY</button>
+      <button className="modal-content-2 button-style" onClick={() => demoLogin()}>LOGIN INSTANTLY WITH DEMO</button>
     </form>
   );
 }

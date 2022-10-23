@@ -2,14 +2,14 @@
 ### AirZzz is a clone of AirBnb. Features posting spots and reviews with your own personal account.
 
 # LIST OF TECHNOLOGIES USED ON THE PROJECT
-## Front End
+## **Front End**
 **React**
 
 **Redux**
 
 **JavaScript**
 
-### Back End
+### **Back End**
 **Express.js**
 
 **Sequelize**

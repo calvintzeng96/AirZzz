@@ -21,7 +21,7 @@
 
 # INSTRUCTIONS
 
-# [WIKI](https://github.com/calvintzeng96/TEST/wiki)
+# WIKI
 ## [API Documentation](https://github.com/calvintzeng96/TEST/wiki/API-Documentation)
 ## [Database Schema](https://github.com/calvintzeng96/TEST/wiki/Database-Schema)
 ## [Features](https://github.com/calvintzeng96/TEST/wiki/Features)

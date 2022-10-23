@@ -23,13 +23,7 @@
 
 # [WIKI](https://github.com/calvintzeng96/TEST/wiki)
 ## [API Documentation](https://github.com/calvintzeng96/TEST/wiki/API-Documentation)
-description
-
 ## [Database Schema](https://github.com/calvintzeng96/TEST/wiki/Database-Schema)
-description
-
 ## [Features](https://github.com/calvintzeng96/TEST/wiki/Features)
-description
-
 ## [Redux Store Structure](https://github.com/calvintzeng96/TEST/wiki/Redux-Store-Structure)
-description
+

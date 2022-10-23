@@ -3,18 +3,18 @@
 
 ## LIST OF TECHNOLOGIES USED ON THE PROJECT
 ### Front End
-**React
+**React**
 
-**Redux
+**Redux**
 
-**JavaScript
+**JavaScript**
 
 ### Back End
-**Express.js
+**Express.js**
 
-**Sequelize
+**Sequelize**
 
-**Sqlite3
+**Sqlite3**
 
 
 ![main image](https://user-images.githubusercontent.com/107524318/197409096-0f4faf69-665e-4ca0-8b50-9cec82109766.png)

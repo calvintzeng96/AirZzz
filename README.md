@@ -11,7 +11,9 @@
 
 ### Back End
 ** Express.js
+
 ** Sequelize
+
 ** Sqlite3
 
 

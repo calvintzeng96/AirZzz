@@ -4,12 +4,16 @@
 ## LIST OF TECHNOLOGIES USED ON THE PROJECT
 ### Front End
 **React
+
 **Redux
+
 **JavaScript
 
 ### Back End
 **Express.js
+
 **Sequelize
+
 **Sqlite3
 
 

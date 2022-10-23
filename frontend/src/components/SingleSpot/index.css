@@ -114,7 +114,8 @@ width: 700px
 }
 
 #bookings {
-    background-color: yellow;
+    background-color: lightgrey;
+    color: lightgrey;
     width: 400px;
     height: 600px;
     margin-left: 100px;

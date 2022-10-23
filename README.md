@@ -33,7 +33,7 @@ npm start
 ```
 
 3. Install dependencies for frontend, and start server (opens browser):
-**FROM THE ROOT DIRECTORY** (user new terminal)
+**FROM THE ROOT DIRECTORY** (use new terminal)
 ```
 cd frontend
 npm install

@@ -43,8 +43,8 @@ npm start
 ENJOY THE SITE :)
 
 # WIKI
-## [API Documentation](https://github.com/calvintzeng96/TEST/wiki/API-Documentation)
-## [Database Schema](https://github.com/calvintzeng96/TEST/wiki/Database-Schema)
-## [Features](https://github.com/calvintzeng96/TEST/wiki/Features)
-## [Redux Store Structure](https://github.com/calvintzeng96/TEST/wiki/Redux-Store-Structure)
+## [API Documentation](https://github.com/calvintzeng96/AirZzz/wiki/API-Documentation)
+## [Database Schema](https://github.com/calvintzeng96/AirZzz/wiki/Database-Schema)
+## [Features](https://github.com/calvintzeng96/AirZzz/wiki/Features)
+## [Redux Store Structure](https://github.com/calvintzeng96/AirZzz/wiki/Redux-Store-Structure)
 

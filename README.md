@@ -47,4 +47,5 @@ ENJOY THE SITE :)
 ## [Database Schema](https://github.com/calvintzeng96/AirZzz/wiki/Database-Schema)
 ## [Features](https://github.com/calvintzeng96/AirZzz/wiki/Features)
 ## [Redux Store Structure](https://github.com/calvintzeng96/AirZzz/wiki/Redux-Store-Structure)
-
+.
+.

@@ -4,6 +4,9 @@ import * as sessionActions from "../../store/session";
 import "./MenuButton.css"
 import { ModalContext } from "../../context/Modal";
 import { useHistory } from "react-router-dom";
+import { FontAwesomeIcon } from '@fortawesome/react-fontawesome'
+import { faBars } from "@fortawesome/free-solid-svg-icons";
+
 
 function MenuButton({ user }) {
   const dispatch = useDispatch();
@@ -46,18 +49,22 @@ function MenuButton({ user }) {
     history.push("/profile")
   }
 
+  const goToTrips = () => {
+    history.push("/trips")
+  }
 
   if (sessionUser) {
     return (
       <>
         <button className="menu-button" onClick={() => openMenu()}>
+          <FontAwesomeIcon className="fas fa-bar" icon={faBars} />
           <i className="fas fa-user-circle" />
         </button>
         {showMenu && (
           <div className="dropdown-container">
             <div id="hi-name" className="dropdown-content">Hello, {user.firstName}</div>
             <button className="dropdown-content" onClick={profilePage}>Profile</button>
-            {/* <button onClick={currentSpots}>My Spots</button> */}
+            <button onClick={goToTrips}>Trips</button>
             <button className="dropdown-content" onClick={logout}>Log Out</button>
           </div>
         )}
@@ -74,7 +81,7 @@ function MenuButton({ user }) {
             <button className="dropdown-content" onClick={() => {
               setModalType("Login")
             }}>Log In</button>
-            <button className="dropdown-content"onClick={() => {
+            <button className="dropdown-content" onClick={() => {
               setModalType("Signup")
             }}>Sign Up</button>
           </div>

@@ -27,9 +27,9 @@ function Navigation({ isLoaded }) {
       <MenuButton user={sessionUser} />
     );
     createSpotButton = (
-      <button id="host-spot" onClick={() => {
+      <button id="host-spot" className="slight-bold" onClick={() => {
         setModalType("CreateSpot")
-      }}>Host Your Place</button>)
+      }}>Airbnb your home</button>)
   } else {
     sessionLinks = (
       <div>
@@ -46,6 +46,7 @@ function Navigation({ isLoaded }) {
             <img id="home-logo" src={logo} />
           </NavLink>
         </div>
+        <div>Search Bar Placeholder</div>
         <div id="create-and-menu-container">
           <div>
             {isLoaded && createSpotButton}

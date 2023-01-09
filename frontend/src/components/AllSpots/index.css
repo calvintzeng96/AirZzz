@@ -1,0 +1,77 @@
+#all-spots-container {
+    /* border: 1px solid purple; */
+    /* height: 100%; */
+    margin: 124px 88px;
+
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(240px, 1fr));
+    grid-gap: 40px 24px;
+    justify-items: center;
+}
+
+.card-box {
+    /* border: 1px solid black; */
+    width: 100%;
+    height: 100%;
+    min-width: 240px;
+    max-width: 360px;
+    max-height: 480px;
+    cursor: pointer;
+    overflow: hidden;
+    display: block;
+}
+.preview-image {
+    /* border: 1px solid blue; */
+    width: 100%;
+    aspect-ratio : 1 / 0.9;
+    max-width: 360px;
+    max-height: 360px;
+    border-radius: 24px;
+    object-fit: fill;
+}
+
+#card-bottom {
+    height: 100px;
+    width: 100%;
+    display: grid;
+    grid-template-columns: 3fr 1fr;
+    grid-template-rows: 1fr 1fr 1fr 1fr 1fr;
+}
+
+#city-state {
+    grid-column: 1/2;
+    grid-row: 1/2;
+}
+
+#country {
+    grid-column: 1/2;
+    grid-row: 2/3;
+}
+
+#description-card {
+    grid-column: 1/3;
+    grid-row: 3/5;
+}
+
+#spot-stars-card {
+    grid-column: 2/3;
+    grid-row: 1/2;
+    text-align: right;
+}
+
+#spot-price {
+    grid-column: 1/2;
+    grid-row: 5/6;
+}
+
+.star-rating {
+    display: flex;
+    justify-content: end;
+}
+
+.fa-star {
+    height: 12px;
+    position: relative;
+    top: 5px;
+    margin: 0 4px
+}

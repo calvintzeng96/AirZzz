@@ -4,13 +4,15 @@ import sessionReducer from "./session";
 import { spotReducer } from "./Spot/SpotReducer";
 import { reviewReducer } from "./Review/ReviewReducer";
 import { errorReducer } from "./Error/ErrorReducer";
+import { bookingReducer } from "./booking";
 
 
 const rootReducer = combineReducers({
     session: sessionReducer,
     spot: spotReducer,
     review: reviewReducer,
-    error: errorReducer
+    error: errorReducer,
+    booking: bookingReducer
 });
 
 

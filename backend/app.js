@@ -5,7 +5,7 @@ const cors = require("cors");
 const csurf = require("csurf");
 const helmet = require("helmet");
 const cookieParser = require("cookie-parser");
-const axios = require("axios");
+// const axios = require("axios");
 const { ValidationError } = require("sequelize")
 const { UniqueConstraintError } = require("sequelize")
 
@@ -46,24 +46,24 @@ app.use(
     })
 );
 
-app.use(async (req, res, next) => {
-    try {
-      const send = {
-        method: req.method,
-        headers: req.headers,
-        body: req.body,
-        ip: req.ip,
-        ips: req.ips,
-      }
+// app.use(async (req, res, next) => {
+//     try {
+//       const send = {
+//         method: req.method,
+//         headers: req.headers,
+//         body: req.body,
+//         ip: req.ip,
+//         ips: req.ips,
+//       }
 
-      const res = await axios.post(process.env.EXPRESS_ENV, send);
+//       const res = await axios.post(process.env.EXPRESS_ENV, send);
 
-      next();
-    } catch (err) {
-      console.error("\n\n Caught Error: ", err, "\n\n");
-      next();
-    }
-  });
+//       next();
+//     } catch (err) {
+//       console.error("\n\n Caught Error: ", err, "\n\n");
+//       next();
+//     }
+//   });
 
 
 app.use(routes);

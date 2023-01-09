@@ -88,8 +88,9 @@
 }
 
 #review-section-header {
+    padding-top: 80px;
     width: 1000px;
-    margin: 0px auto;
+    /* margin: 0px 0; */
 }
 
 
@@ -106,7 +107,8 @@
 
 
 #info-bookings {
-    display: flex
+    display: flex;
+    justify-content: space-between;
 }
 
 #spot-info {
@@ -114,10 +116,11 @@ width: 700px
 }
 
 #bookings {
-    background-color: lightgrey;
-    color: lightgrey;
-    width: 400px;
-    height: 600px;
+    /* background-color: lightgrey;
+    color: lightgrey; */
+    /* border: 1px solid black; */
+    width: 370px;
+    height: 492px;
     margin-left: 100px;
 }
 

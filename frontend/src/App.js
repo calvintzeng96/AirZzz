@@ -12,6 +12,7 @@ import AllSpots from "./components/AllSpots";
 import SingleSpot from "./components/SingleSpot"
 // import CurrentSpots from "./components/CurrentSpots"
 import CreateSpot from "./components/CreateSpot";
+import Trip from "./components/Trips"
 //------------------------------
 
 function App() {
@@ -31,6 +32,9 @@ function App() {
             </Route>
             <Route path="/profile">
               <Profile />
+            </Route>
+            <Route path="/trips">
+              <Trip />
             </Route>
             <Route exact path="/spots">
               <CreateSpot />

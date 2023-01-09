@@ -8,6 +8,7 @@ import { ModalContext } from "../../context/Modal"
 import { Redirect } from "react-router-dom"
 import SpotReviews from "../SpotReviews"
 import "./index.css"
+import Booking from "../Booking"
 
 
 const SingleSpot = () => {
@@ -92,7 +93,9 @@ const SingleSpot = () => {
 
                         <div>description: {spot.description}</div>
                     </div>
-                    <div id="bookings">SPOT RESERVED FOR BOOKING FEATURE</div>
+                    <div id="bookings">
+                        <Booking />
+                    </div>
                 </div>
                 <div id="review-section-header">
 
@@ -106,6 +109,9 @@ const SingleSpot = () => {
                 <br></br>
                 <div id="review-container">
                     <SpotReviews spotId={spotId} />
+                </div>
+                <div className="height">
+                    123
                 </div>
             </div>
         </>

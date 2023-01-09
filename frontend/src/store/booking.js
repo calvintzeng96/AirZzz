@@ -1,13 +1,10 @@
-import {csrfFetch} from "./csrf"
+import { csrfFetch } from "./csrf"
 
 export const GET_USERS_BOOKINGS = "bookings/GET_USERS_BOOKINGS"
 export const GET_SPOTS_BOOKINGS = "bookings/GET_SPOTS_BOOKINGS"
-export const CREATE_BOOKINGS = "bookings/CREATE_BOOKINGS"
+export const NEW_BOOKINGS = "bookings/NEW_BOOKINGS"
 export const EDIT_BOOKINGS = "bookings/EDIT_BOOKINGS"
 export const DESTROY_BOOKINGS = "bookings/DESTROY_BOOKINGS"
-
-
-
 
 export const usersBookings = (bookings) => {
     return {
@@ -21,6 +18,24 @@ export const spotsBookings = (bookings) => {
         bookings
     }
 }
+export const newBooking = (booking) => {
+    return {
+        type: NEW_BOOKINGS,
+        booking
+    }
+}
+export const editBooking = (booking) => {
+    return {
+        type: EDIT_BOOKINGS,
+        booking
+    }
+}
+export const destroyBooking = (booking) => {
+    return {
+        type: DESTROY_BOOKINGS,
+        booking
+    }
+}
 
 
 export const getUsersBookings = () => async (dispatch) => {
@@ -32,12 +47,39 @@ export const getUsersBookings = () => async (dispatch) => {
         return bookings
     }
 }
-export const getSpotsBookings = () => async (dispatch) => {
+export const createBooking = () => async (dispatch) => {
     const res = await csrfFetch("/api/bookings")
 
     if (res.ok) {
         const bookings = await res.json()
         dispatch(spotsBookings(bookings))
+        return bookings
+    }
+}
+export const updateBooking = () => async (dispatch) => {
+    const res = await csrfFetch("/api/bookings")
+
+    if (res.ok) {
+        const bookings = await res.json()
+        dispatch(newBooking(bookings))
+        return bookings
+    }
+}
+export const deleteBooking = () => async (dispatch) => {
+    const res = await csrfFetch("/api/bookings")
+
+    if (res.ok) {
+        const bookings = await res.json()
+        dispatch(updateBooking(bookings))
+        return bookings
+    }
+}
+export const getSpotsBookings = () => async (dispatch) => {
+    const res = await csrfFetch("/api/bookings")
+
+    if (res.ok) {
+        const bookings = await res.json()
+        dispatch(deleteBooking(bookings))
         return bookings
     }
 }
@@ -55,6 +97,12 @@ export const bookingReducer = (state = initialState, action) => {
         case GET_USERS_BOOKINGS:
             return
         case GET_SPOTS_BOOKINGS:
+            return
+        case NEW_BOOKINGS:
+            return
+        case EDIT_BOOKINGS:
+            return
+        case DESTROY_BOOKINGS:
             return
         default:
             return state

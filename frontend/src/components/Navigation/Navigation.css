@@ -45,3 +45,9 @@
 #home {
     margin-left: 100px
 }
+
+
+#search-bar {
+    min-width: 400px;
+    text-align: center;
+}

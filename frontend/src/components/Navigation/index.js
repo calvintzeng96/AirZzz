@@ -46,7 +46,7 @@ function Navigation({ isLoaded }) {
             <img id="home-logo" src={logo} />
           </NavLink>
         </div>
-        <div>Search Bar Placeholder</div>
+        <div id="search-bar">Search Bar Placeholder</div>
         <div id="create-and-menu-container">
           <div>
             {isLoaded && createSpotButton}

@@ -18,12 +18,12 @@ export const spotsBookings = (bookings) => {
         bookings
     }
 }
-export const newBooking = (booking) => {
-    return {
-        type: NEW_BOOKINGS,
-        booking
-    }
-}
+// export const newBooking = (booking) => {
+//     return {
+//         type: NEW_BOOKINGS,
+//         booking
+//     }
+// }
 export const editBooking = (booking) => {
     return {
         type: EDIT_BOOKINGS,
@@ -59,26 +59,28 @@ export const getSpotsBookings = (spotId) => async (dispatch) => {
 export const createBooking = (spotId, data) => async (dispatch) => {
     const res = await csrfFetch(`/api/spots/${spotId}/bookings`, {
         method: "POST",
-        headers: { "Content-Type": "application/json"},
+        headers: { "Content-Type": "application/json" },
         body: JSON.stringify(data)
     })
+    console.log("=================3", "HERE")
 
     if (res.ok) {
         const bookings = await res.json()
-        dispatch(spotsBookings(bookings))
+        // console.log("=================4", bookings)
+        // dispatch(spotsBookings(bookings))
         return bookings
     }
 }
 export const updateBooking = (spotId, data) => async (dispatch) => {
     const res = await csrfFetch("/api/bookings", {
         method: "PUT",
-        headers: { "Content-Type": "application/json"},
+        headers: { "Content-Type": "application/json" },
         body: JSON.stringify(data)
     })
 
     if (res.ok) {
         const bookings = await res.json()
-        dispatch(newBooking(bookings))
+        dispatch(editBooking(bookings))
         return bookings
     }
 }
@@ -105,11 +107,15 @@ let initialState = {
 export const bookingReducer = (state = initialState, action) => {
     switch (action.type) {
         case GET_USERS_BOOKINGS:
-            return
+            const usersBookings = {...state, myBookings: {}}
+            action.bookings.bookings.map(ele => {
+                usersBookings.myBookings[ele.id] = ele
+            })
+            return usersBookings
         case GET_SPOTS_BOOKINGS:
-            return
-        case NEW_BOOKINGS:
-            return
+            return state
+        // case NEW_BOOKINGS:
+        //     return
         case EDIT_BOOKINGS:
             return
         case DESTROY_BOOKINGS:

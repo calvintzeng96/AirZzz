@@ -1,4 +1,90 @@
 #trip-container {
-        margin: 124px 88px;
-        border: 1px solid black
+        margin-top: 124px;
+        /* border: 1px solid black; */
+        width: 100%;
+        max-width: 800px;
+        display: flex;
+        flex-direction: column;
+        align-self: center;
+}
+#trip-title {
+        font-size: 28px;
+        font-weight: bold;
+}
+
+#trip-individual {
+        margin: 20px 0;
+        height: 200px;
+        border: 1px solid lightgrey;
+        box-shadow: 0 0px 8px rgb(0 0 0 / 20%);
+        border-radius: 12px;
+        min-width: 800px;
+        display: flex;
+        justify-content: space-between;
+}
+
+#trip-individual:hover {
+        box-shadow: 0 1px 6px rgba(0, 0, 0, 0.3), 0 1px 4px rgba(0, 0, 0, 0.24);
+        cursor: pointer;
+}
+
+#trip-individual-1 {
+        display: flex;
+        flex-direction: column;
+        width: 50%;
+        padding: 20px;
+}
+
+#trip-individual-1-1 {
+        border-bottom: 1px solid lightgrey;
+        padding-bottom: 20px;
+}
+#trip-individual-1-1-1 {
+        font-size: 24px;
+        /* font-weight: bold */
+}
+#trip-individual-1-1-2 {
+        font-size: 14px;
+}
+
+#trip-individual-1-2 {
+        display: flex;
+        height: 100px;
+        font-size: 16px;
+
+}
+
+#trip-individual-1-2-1 {
+        width: 25%;
+        margin: 20px 0;
+}
+.trip-individual-1-2-1-year {
+        font-size: 14px;
+}
+
+
+#trip-individual-1-2-2 {
+        width: 75%;
+        margin: 20px;
+        border-left: 1px solid lightgrey;
+        padding-left: 40px;
+}
+
+#trip-individual-1-2-2-3 {
+        font-size: 14px
+}
+
+
+
+
+
+
+
+
+
+#trip-image {
+        height: 200px;
+        width: 50%;
+        object-fit: cover;
+        border-radius: 0 12px 12px 0;
 }

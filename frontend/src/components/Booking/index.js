@@ -3,12 +3,19 @@ import { FontAwesomeIcon } from '@fortawesome/react-fontawesome'
 import { faStar } from "@fortawesome/free-solid-svg-icons";
 import { useEffect, useState } from "react";
 import { useDispatch, useSelector } from "react-redux"
+import { createBooking } from "../../store/booking";
+import { useHistory } from "react-router-dom";
 const Booking = () => {
+    const dispatch = useDispatch()
+    const history = useHistory()
     const spot = useSelector(state => state.spot.singleSpot)
-    const [checkin, setCheckin] = useState("")
-    const [checkout, setCheckout] = useState("")
+    const [startDate, setStartDate] = useState("")
+    const [endDate, setendDate] = useState("")
     const [totalDays, setTotalDays] = useState(5)
     const [totalPrice, setTotalPrice] = useState(0)
+    const [errors, setErrors] = useState([])
+
+
 
     useEffect(() => {
         let now = new Date()
@@ -16,28 +23,36 @@ const Booking = () => {
         now3.setDate(now3.getDate() + 5)
         let defaultCheckin = now.toISOString().split("T")[0]
         let defaultCheckout = now3.toISOString().split("T")[0]
-        setCheckin(defaultCheckin)
-        setCheckout(defaultCheckout)
-        // console.log("============1", totalDays)
+        setStartDate(defaultCheckin)
+        setendDate(defaultCheckout)
     }, [])
 
     useEffect(() => {
-        let updatedCheckin = new Date(checkin)
-        let updatedCheckout = new Date(checkout)
+        setErrors([])
+        let updatedCheckin = new Date(startDate)
+        let updatedCheckout = new Date(endDate)
         if (updatedCheckin < updatedCheckout) {
             setTotalDays((updatedCheckout - updatedCheckin) / 8.64e+7)
         } else {
             setTotalDays(0)
         }
+
         setTotalPrice((totalDays * spot.price))
-    }, [checkin, checkout, totalDays])
-    // useEffect(() => {
+    }, [startDate, endDate, spot, totalDays])
 
-    // }, [totalDays])
-
-    const submit = () => {
-        //
-        return
+    const submit = (e) => {
+        e.preventDefault();
+        setErrors([])
+        const data = { startDate, endDate }
+        dispatch(createBooking(spot.id, data))
+            .then((res) => {
+                console.log(res)
+                history.push("/trips")
+            })
+            .catch(async (res) => {
+                const data = await res.json()
+                setErrors([data.message])
+            })
     }
 
     const goToSpotReviews = () => {
@@ -49,7 +64,9 @@ const Booking = () => {
     }
     return (
         <div id="bookings-container">
-            {console.log("==================3", spot)}
+            {errors.length > 0 && (
+                <div>{errors[0]}</div>
+            )}
             <div id="bookings-1" className="">
                 <div id="bookings-1-1">
                     <div id="bookings-1-1-1" className="slight-bold">${spot.price}</div>
@@ -75,16 +92,16 @@ const Booking = () => {
                             <label>CHECK-IN</label>
                             <input
                                 type="date"
-                                value={checkin}
-                                onChange={(e) => setCheckin(e.target.value)}
+                                value={startDate}
+                                onChange={(e) => setStartDate(e.target.value)}
                             />
                         </div>
                         <div id="bookings-form-selection-container-1-2">
                             <label>CHECKOUT</label>
                             <input
                                 type="date"
-                                value={checkout}
-                                onChange={(e) => setCheckout(e.target.value)}
+                                value={endDate}
+                                onChange={(e) => setendDate(e.target.value)}
                             />
                         </div>
                     </div>

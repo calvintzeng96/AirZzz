@@ -29,13 +29,14 @@ const Booking = () => {
         } else {
             setTotalDays(0)
         }
-    }, [checkin, checkout])
-    useEffect(() => {
         setTotalPrice((totalDays * spot.price))
+    }, [checkin, checkout, totalDays])
+    // useEffect(() => {
 
-    }, [totalDays])
+    // }, [totalDays])
 
     const submit = () => {
+        //
         return
     }
 

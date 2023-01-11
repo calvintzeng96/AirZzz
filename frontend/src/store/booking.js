@@ -39,7 +39,7 @@ export const destroyBooking = (booking) => {
 
 
 export const getUsersBookings = () => async (dispatch) => {
-    const res = await csrfFetch("/api/bookings")
+    const res = await csrfFetch("/api/bookings/current")
 
     if (res.ok) {
         const bookings = await res.json()
@@ -47,8 +47,21 @@ export const getUsersBookings = () => async (dispatch) => {
         return bookings
     }
 }
-export const createBooking = () => async (dispatch) => {
-    const res = await csrfFetch("/api/bookings")
+export const getSpotsBookings = (spotId) => async (dispatch) => {
+    const res = await csrfFetch(`/api/spots/${spotId}/bookings`)
+
+    if (res.ok) {
+        const bookings = await res.json()
+        dispatch(deleteBooking(bookings))
+        return bookings
+    }
+}
+export const createBooking = (spotId, data) => async (dispatch) => {
+    const res = await csrfFetch(`/api/spots/${spotId}/bookings`, {
+        method: "POST",
+        headers: { "Content-Type": "application/json"},
+        body: JSON.stringify(data)
+    })
 
     if (res.ok) {
         const bookings = await res.json()
@@ -56,8 +69,12 @@ export const createBooking = () => async (dispatch) => {
         return bookings
     }
 }
-export const updateBooking = () => async (dispatch) => {
-    const res = await csrfFetch("/api/bookings")
+export const updateBooking = (spotId, data) => async (dispatch) => {
+    const res = await csrfFetch("/api/bookings", {
+        method: "PUT",
+        headers: { "Content-Type": "application/json"},
+        body: JSON.stringify(data)
+    })
 
     if (res.ok) {
         const bookings = await res.json()
@@ -65,21 +82,14 @@ export const updateBooking = () => async (dispatch) => {
         return bookings
     }
 }
-export const deleteBooking = () => async (dispatch) => {
-    const res = await csrfFetch("/api/bookings")
+export const deleteBooking = (bookingId) => async (dispatch) => {
+    const res = await csrfFetch(`/api/bookings/${bookingId}`, {
+        method: "DELETE"
+    })
 
     if (res.ok) {
         const bookings = await res.json()
         dispatch(updateBooking(bookings))
-        return bookings
-    }
-}
-export const getSpotsBookings = () => async (dispatch) => {
-    const res = await csrfFetch("/api/bookings")
-
-    if (res.ok) {
-        const bookings = await res.json()
-        dispatch(deleteBooking(bookings))
         return bookings
     }
 }
